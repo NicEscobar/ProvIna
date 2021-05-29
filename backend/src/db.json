@@ -1,0 +1,23 @@
+{
+  "get": 
+    [
+    {
+      "IdArquivos": 2,
+      "IdAluno_Arquivos": 1,
+      "NomeArquivo": "prova",
+      "Categoria": "calculo",
+      "DataCriacao": "2021-04-03T00:00:00.000Z",
+      "URLs": "url",
+      "NumeroCurtidas": 3
+    },
+    {
+      "IdArquivos": 3,
+      "IdAluno_Arquivos": 1,
+      "NomeArquivo": "prova",
+      "Categoria": "digital",
+      "DataCriacao": "2021-04-03T00:00:00.000Z",
+      "URLs": "url",
+      "NumeroCurtidas": 3
+    }
+  ]
+}
