@@ -6,7 +6,6 @@ module.exports = {
     async SQL_InserirComentario (request, response){
        
       const {Texto, IdAluno, IdArquivo} = request.body; 
-        
 
       const data = new Date();
 

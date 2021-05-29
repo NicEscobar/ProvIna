@@ -9,6 +9,20 @@ const Post = () => {
   
   const { id } = useParams();
   const [post, setPost] = useState([]);
+  const [comentario, setComentario] = useState('');
+
+  async function SalvarComentario(){
+      
+    api.post('/Comentario',{
+
+      Texto: comentario,  
+      IdAluno: post.IdAluno_Arquivos,
+      IdArquivo: id
+
+    });
+   
+  }
+
 
   useEffect(() => {
     
@@ -16,16 +30,13 @@ const Post = () => {
       
       const arquivoId = await api.get('/arquivo/' + id,{});
      
-      setPost(arquivoId.data[0]);
-     
-    
+      setPost(arquivoId.data[0]); 
     }
+
     BuscarArquivo();
     //find(`/posts/${id}`, setPost);
 
-  
-    console.log("arquivoId",post)
-  }, [id]);
+  }, [comentario, id]);
 
   return (
     <main>
@@ -43,9 +54,19 @@ const Post = () => {
       <article className="card post">
       <h2 className="card__title">Escrever comentário</h2>
       <form>
-        <textarea id="textarea" name="textarea" rows="4" cols="50">
+        <textarea 
+          id="textarea" 
+          name="textarea" 
+          rows="4" 
+          cols="50"
+          value = {comentario}
+          onChange={(e) => setComentario(e.target.value)}>
         </textarea>
-        <button className="menu-item menu-item--purple"> Enviar </button>
+        <button 
+          onClick= {SalvarComentario} 
+          className="menu-item menu-item--green"
+        > ENVIAR 
+        </button>
       </form>
 
       </article>
