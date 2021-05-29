@@ -66,16 +66,11 @@ const Login = () => {
                 </Link>
               </li>
               <li>
-                <button onClick= {Logar}>
-                  Logar
+                <button onClick= {Logar} className="menu-item menu-item--green">
+                  ENTRAR
                 </button> 
-                <Link to="/login" className="menu-item menu-item--green">
-                  <h3>Entrar</h3>
-                </Link>
-              </li>
-              
+              </li>              
             </ul>
-
             <Link></Link>
           </form>
         </article>
@@ -85,3 +80,9 @@ const Login = () => {
 };
 
 export default Login;
+
+/*
+<Link to="/login" className="menu-item menu-item--green">
+                  <h3>Entrar</h3>
+                </Link>
+*/

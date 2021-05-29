@@ -8,21 +8,35 @@ import api from '../api/api'
 const Post = () => {
   
   const { id } = useParams();
-  const [post, setPost] = useState({});
+  const [post, setPost] = useState([]);
 
   useEffect(() => {
-
+    
+    async function BuscarArquivo(){
+      
+      const arquivoId = await api.get('/arquivo/' + id,{});
+     
+      setPost(arquivoId.data[0]);
+     
+    
+    }
+    BuscarArquivo();
     //find(`/posts/${id}`, setPost);
 
+  
+    console.log("arquivoId",post)
   }, [id]);
 
   return (
     <main>
       <div className="container flex flex--center">
         <article className="card post">
-          <h1 className="card__title">{post.NomeArquivo} - {post.NomeAutor}</h1>
+          <h1 className="card__title">{post.NomeArquivo} - {post.NomeAluno}</h1>
           <p className="card__text">{post.Body}</p>
-          <button className="menu-item menu-item--purple"><FontAwesomeIcon icon={faFileDownload} /> Baixar </button>
+          
+          <button className="menu-item menu-item--purple">
+              <FontAwesomeIcon icon={faFileDownload} /> BAIXAR 
+          </button>
         </article>
       </div>
       <div className="container flex flex--center">

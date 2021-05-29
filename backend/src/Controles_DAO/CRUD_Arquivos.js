@@ -88,7 +88,7 @@ module.exports = {
         req.query(comando, function (err, resposta) {
             
           if(err) throw err;
-          console.log("response",resposta.recordset)
+          //console.log("response",resposta.recordset)
           response.json(resposta.recordset);
           
           conn.close();
@@ -100,9 +100,9 @@ module.exports = {
       
       const IdArquivo = request.params.IdArquivo;
 
-      const { IdAluno_Arquivos } = request.query;
+      //const { IdAluno_Arquivos } = request.query;
 
-      console.log("IdAluno_Arquivos",  request.query)
+      //console.log("IdAluno_Arquivos",  request.query)
      
       var conn = new sql.ConnectionPool(configuracaoSQL);
 
@@ -114,9 +114,10 @@ module.exports = {
                   
         var req =  new sql.Request(conn);
     
-        var comando = `SELECT * FROM [ProvIna_Database].[dbo].[Arquivo]
-                      WHERE IdAluno_Arquivos = ${IdAluno_Arquivos}
-                        AND IdArquivos = ${IdArquivo}`;
+        var comando = `  SELECT A.*, B.Nome as NomeAluno FROM [ProvIna_Database].[dbo].[Arquivo] AS A
+                          INNER JOIN [ProvIna_Database].[dbo].[Aluno] AS B
+                         ON A.[IdAluno_Arquivos] = B.IdAluno
+                          WHERE IdArquivos = ${IdArquivo}`;
           
         req.query(comando, function (err, resposta) {
             

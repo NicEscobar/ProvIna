@@ -28,7 +28,7 @@ const Register = () => {
     }
     else console.log("existe",cadastro.data)
     
-    history.push('/Login');
+    history.push('/login');
   }
      
   return (
@@ -80,13 +80,11 @@ const Register = () => {
               </li>
               <li>
                 
-                <button onClick= {CadastrarAluno}>
-                  Cadastrar
+                <button onClick= {CadastrarAluno} className="menu-item menu-item--green">
+                  CADASTRAR
                 </button> 
 
-                <Link to="/login" className="menu-item menu-item--green">
-                  <h3>Cadastrar</h3>
-                </Link>
+                
               </li>              
             </ul>
             <Link></Link>
@@ -98,3 +96,9 @@ const Register = () => {
 };
 
 export default Register;
+
+/*
+<Link to="/login" className="menu-item menu-item--green">
+                  <h3>Cadastrar</h3>
+                </Link>
+                */
