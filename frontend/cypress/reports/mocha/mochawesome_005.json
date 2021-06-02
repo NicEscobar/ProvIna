@@ -1,0 +1,202 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 6,
+    "passes": 6,
+    "pending": 0,
+    "failures": 0,
+    "start": "2021-05-31T03:10:10.816Z",
+    "end": "2021-05-31T03:10:20.400Z",
+    "duration": 9584,
+    "testsRegistered": 6,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "91f2ac40-bbf9-4abb-b89e-a5efbf2fcca3",
+      "title": "",
+      "fullFile": "cypress/integration/telas.spec.js",
+      "file": "cypress/integration/telas.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "8ab46502-e505-448f-9deb-8353673507ff",
+          "title": "Testando as telas",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Cenario de Teste: Navegação das páginas",
+              "fullTitle": "Testando as telas Cenario de Teste: Navegação das páginas",
+              "timedOut": null,
+              "duration": 5145,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('http://localhost:3000/register');\ncy.get('[data-cy=reg-nome]').type('Aluno');\ncy.get('[data-cy=reg-email]').type('aluno@');\ncy.get('[data-cy=reg-senha]').type('123');\ncy.get('[data-cy=btn-registrar]').click();\ncy.get('[data-cy=email]').type('aluno@');\ncy.get('[data-cy=\"senha\"]').type('123');\ncy.get('[data-cy=btn-entrar]').click();\ncy.get('[data-cy=btn_upload]').click();\ncy.get('[data-cy=\"nomeArquivo\"]').type('Arquivo1');\ncy.get('[data-cy=\"categoriaArquivo\"]').type('Calculo');\ncy.get('[data-cy=\"btn-enviar\"]').click();\ncy.visit('http://localhost:3000/');",
+              "err": {},
+              "uuid": "4f39286d-6afb-4db2-bea7-78e84087914d",
+              "parentUUID": "8ab46502-e505-448f-9deb-8353673507ff",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Cenario de Teste: Cadastrando um Aluno não existente no banco",
+              "fullTitle": "Testando as telas Cenario de Teste: Cadastrando um Aluno não existente no banco",
+              "timedOut": null,
+              "duration": 1228,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('http://localhost:3000/register');\ncy.get('[data-cy=reg-nome]').type('Aluno8');\ncy.get('[data-cy=reg-email]').type('al8@');\ncy.get('[data-cy=reg-senha]').type('123');\ncy.server();\ncy.route('POST', '**/Cadastro').as('cadastrarAluno');\ncy.get('[data-cy=btn-registrar]').click(); // eslint-disable-next-line jest/valid-expect-in-promise\ncy.wait('@cadastrarAluno').then(xhr => {\n  // eslint-disable-next-line no-unused-expressions\n  expect(xhr.response.body).is.not.null;\n  expect(xhr.response.body).has.property('Parametro').be.eq(0);\n});",
+              "err": {},
+              "uuid": "b5d53a2e-5d50-4678-9d35-a49b3db53656",
+              "parentUUID": "8ab46502-e505-448f-9deb-8353673507ff",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Cenario de Teste: Cadastrando um Aluno existente no banco",
+              "fullTitle": "Testando as telas Cenario de Teste: Cadastrando um Aluno existente no banco",
+              "timedOut": null,
+              "duration": 1059,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('http://localhost:3000/register');\ncy.get('[data-cy=reg-nome]').type('Nicole');\ncy.get('[data-cy=reg-email]').type('ni@');\ncy.get('[data-cy=reg-senha]').type('123');\ncy.server();\ncy.route('POST', '**/Cadastro').as('cadastrarAluno');\ncy.get('[data-cy=btn-registrar]').click(); // eslint-disable-next-line jest/valid-expect-in-promise\ncy.wait('@cadastrarAluno').then(xhr => {\n  // eslint-disable-next-line no-unused-expressions\n  expect(xhr.response.body).is.not.null;\n  expect(xhr.response.body).has.property('Parametro').be.eq(1);\n});",
+              "err": {},
+              "uuid": "df72ff18-1787-45ea-9375-10e56299ed46",
+              "parentUUID": "8ab46502-e505-448f-9deb-8353673507ff",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Cenario de Teste: Logar um Aluno já cadastrado no banco",
+              "fullTitle": "Testando as telas Cenario de Teste: Logar um Aluno já cadastrado no banco",
+              "timedOut": null,
+              "duration": 102,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// eslint-disable-next-line jest/valid-expect-in-promise\ncy.request({\n  method: 'POST',\n  url: 'http://localhost:3333/login',\n  body: {\n    \"Email\": \"ni@\",\n    \"Senha\": \"123\"\n  }\n}).then(response => {\n  // eslint-disable-next-line no-unused-expressions\n  expect(response.body.auth).is.not.null;\n  cy.log(response.body.token);\n});",
+              "err": {},
+              "uuid": "386bcf08-3089-43dd-8c68-c56d27efd2d8",
+              "parentUUID": "8ab46502-e505-448f-9deb-8353673507ff",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Cenario de Teste: Logar um Aluno não cadastrado no banco",
+              "fullTitle": "Testando as telas Cenario de Teste: Logar um Aluno não cadastrado no banco",
+              "timedOut": null,
+              "duration": 85,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// eslint-disable-next-line jest/valid-expect-in-promise\ncy.request({\n  method: 'POST',\n  url: 'http://localhost:3333/login',\n  body: {\n    \"Email\": \"teste@\",\n    \"Senha\": \"123\"\n  }\n}).then(response => {\n  // eslint-disable-next-line no-unused-expressions\n  expect(response.body.auth).is.false;\n  cy.log(response.body.token);\n});",
+              "err": {},
+              "uuid": "ef1ee430-fbe2-4dc8-b79a-a7e45f24ed69",
+              "parentUUID": "8ab46502-e505-448f-9deb-8353673507ff",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Cenario de Teste: Inserir Arquivo no banco",
+              "fullTitle": "Testando as telas Cenario de Teste: Inserir Arquivo no banco",
+              "timedOut": null,
+              "duration": 86,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// eslint-disable-next-line jest/valid-expect-in-promise\ncy.request({\n  method: 'POST',\n  url: 'http://localhost:3333/arquivo',\n  body: {\n    \"IdAluno_Arquivos\": 3,\n    \"NomeArquivo\": \"ProvaAlgebra\",\n    \"Categoria\": \"PDF\",\n    \"URls\": \"url@\",\n    \"NumeroCurtidas\": 34,\n    \"Tipo\": \"pdf\"\n  }\n}).then(response => {\n  cy.log(response.body);\n});",
+              "err": {},
+              "uuid": "3a595457-1b86-4f93-a357-a958a1c1492f",
+              "parentUUID": "8ab46502-e505-448f-9deb-8353673507ff",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "4f39286d-6afb-4db2-bea7-78e84087914d",
+            "b5d53a2e-5d50-4678-9d35-a49b3db53656",
+            "df72ff18-1787-45ea-9375-10e56299ed46",
+            "386bcf08-3089-43dd-8c68-c56d27efd2d8",
+            "ef1ee430-fbe2-4dc8-b79a-a7e45f24ed69",
+            "3a595457-1b86-4f93-a357-a958a1c1492f"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 7705,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "6.2.2"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports/mocha",
+        "quite": true,
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "5.2.0"
+    }
+  }
+}

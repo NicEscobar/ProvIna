@@ -1,0 +1,73 @@
+.comment-page ul{
+    max-width: 800px;
+    margin: auto;
+    padding: 10px;
+  
+  }
+  
+.comment-page ul li{
+    background-color: rgb(30,30,30);
+    margin: 20px;
+    border-radius: 2px;
+  }
+
+  .comment-page ul li textarea{
+    background-color: #121212;
+    resize: none;
+    width: 700px;
+    height: 300px;
+    margin: 20px;
+    border-radius: 2px;
+    border: none;
+    outline: 2px;
+    color: white;
+    align-items: center;
+  }
+
+  .comment-page ul li button{
+    padding: 0;
+    border:0;
+    background: none;
+    margin: 2px;
+    text-align: center;
+    border: 2px solid #03DAC6;
+    padding: 14px 40px;
+    outline: none;
+    color: white;
+    border-radius: 2px;
+    transition: 0.25s;
+    cursor: pointer;
+  }
+
+.comment-page button:hover{
+    background: #03DAC6;
+  }
+
+.comment-page ul li .card-body{
+    display: flex;
+    padding: 10px;
+    border:0;
+    margin: 20px auto;
+    outline: none;
+    color: white;
+    border-radius: 2px;
+  }
+
+  .comment-page ul li .card-body .description h1{
+    color: #fff;
+    font-size: 25px;
+    margin: 0 !important; 
+  }
+
+  .comment-page ul li .card-body .description p{
+    color: #cfcfcf;
+    font-size: 20px;
+    margin-top: 3px;
+    margin-left: 10px;
+  }
+
+  .comment-page .card-body .send-button{
+    padding: 10px;
+    display: flex;
+    justify-content: flex-end;
+  }

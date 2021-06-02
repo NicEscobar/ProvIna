@@ -1,0 +1,133 @@
+
+.home-page .btn-new-item{
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 10;
+    font-size: 70px;
+  }
+  
+  .home-page .btn-new-item i{
+    color: #fff;
+  }
+  
+  
+  .home-page ul{
+    max-width: 800px;
+    margin: auto;
+    padding: 10px;
+  
+  }
+  
+  .home-page ul li{
+    background-color: rgb(30,30,30);
+    margin: 20px;
+    border-radius: 2px;
+  }
+  
+  .home-page ul li .card-body{
+    display: flex;
+    padding: 20px 20px 0 20px;
+  }
+  
+  
+  .home-page ul li .card-body img{
+    width: 200px;
+    height: 200px;
+    margin-right: 20px;
+  }
+  
+  .home-page ul li .card-body{
+    display: flex;
+    padding: 20px 20px 0 20px;
+  }
+  
+  .home-page ul li .card-body .description .upvote-container{
+    display: flex;
+    border:0;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #03DAC6;
+    outline: none;
+    color: white;
+    border-radius: 2px;
+    cursor: pointer;
+    justify-content: space-between;
+  }
+  
+  .home-page ul li .card-body .description .upvote-container button{
+    border:0;
+    background: none;
+    margin-left: 10px;
+    margin-right: 10px;
+    transition: 0.25s;
+    color: white;
+  }
+  .home-page ul li .card-body .description .upvote-container button{
+    border:0;
+    background: none;
+    transition: 0.25s;
+    color: white;
+    outline: none;
+  }
+  .home-page ul li .card-body .description .upvote-container button i #iconminus{
+    margin-right: 10px;
+  }
+  .home-page ul li .card-body .description .upvote-container button i #iconplus{
+    margin-left: 10px;
+  }
+  
+  .home-page ul li .card-body .description .upvote-container .total-upvotes{
+    border:0;
+    background: none;
+    transition: 0.25s;
+    margin: 5px;
+    color: #03DAC6;
+  }
+  
+  .home-page ul li .card-body .description .upvote-container button:hover{
+    background: #03DAC6;
+    outline: none;
+  }
+  
+  .home-page ul li .card-body .description h1{
+    color: #fff;
+    font-size: 25px;
+    margin: 0;
+  }
+  
+  .home-page ul li .card-body .description p{
+    color: #cfcfcf;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 5px;
+  }
+  
+  .home-page ul li .card-footer{
+    padding: 10px;
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .home-page ul li .card-footer .icons{
+    display: flex;
+    align-items: center;
+  }
+  
+  .home-page ul li .card-footer .icons a{
+    color: #fff;
+    margin-left: 20px;
+    text-decoration: none;
+  }
+  
+  .home-page ul li .card-footer .icons a label{
+    cursor: pointer;
+  }
+  
+  .home-page ul li .card-footer .icons a i{
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+  
+  
+  

@@ -1,17 +1,11 @@
 const sql = require('mssql');
-const configuracaoSQL = require('./models/ConexaoSQL');
+const configuracaoSQL = require('../config/ConexaoSQL');
 
 module.exports = {
   
     async SQL_InserirComentario (request, response){
        
       const {Texto, IdAluno, IdArquivo} = request.body; 
-
-      const data = new Date();
-
-      const DataCriacao = data.toLocaleDateString();  
-     
-      console.log("Texto",Texto)
 
       var conn = new sql.ConnectionPool(configuracaoSQL);
 
@@ -24,7 +18,7 @@ module.exports = {
         var req =  new sql.Request(conn);
     
         var comando = `INSERT INTO [ProvIna_Database].[dbo].[Comentario] (Texto, [DataPostagem], [IdArquivo_Comentario], [IdAluno_Comentario])
-                        VALUES ('${Texto}',${DataCriacao},${IdArquivo},${IdAluno});`;
+                        VALUES ('${Texto}',CONVERT(DATE, GETDATE(), 103),${IdArquivo},${IdAluno});`;
           
         req.query(comando, function (err, resposta) {
             
@@ -66,11 +60,9 @@ module.exports = {
 
     async SQL_BuscarComentarios (request, response){
        
-      const {IdComentario} = request.query; 
+      const IdArquivo = request.params.IdArquivo;
      
       var conn = new sql.ConnectionPool(configuracaoSQL);
-
-      console.log("IdComentario",IdComentario)
 
       conn.connect(function(err){
   
@@ -81,7 +73,7 @@ module.exports = {
         var req =  new sql.Request(conn);
     
         var comando = `	SELECT * FROM [ProvIna_Database].[dbo].[Comentario] 
-                        WHERE [IdComentario] = ${IdComentario};`;
+                        WHERE [IdArquivo_Comentario] = ${IdArquivo};`;
           
         req.query(comando, function (err, resposta) {
             

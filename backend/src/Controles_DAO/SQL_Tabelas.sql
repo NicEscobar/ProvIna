@@ -1,4 +1,4 @@
-USE [ProvIna_Database]
+.USE [ProvIna_Database]
 GO
 
 CREATE TABLE [dbo].[Aluno](
@@ -13,14 +13,13 @@ CREATE TABLE [dbo].[Aluno](
 	[IdAluno_Arquivos] [int] NOT NULL,
 	[NomeArquivo] [varchar](45) NOT NULL,
 	[Categoria] [varchar](45) NOT NULL,
-	[DataCriacao] [datetime] NOT NULL,
-	[URLs] [varchar](45) NOT NULL,
-	[NumeroCurtidas] [int] NULL,
+	[DataCriacao] [date] NOT NULL,
+	[URLs] [nvarchar](255) NOT NULL,
  CONSTRAINT [PK_IdArquivos] PRIMARY KEY CLUSTERED (IdArquivos))
 
  CREATE TABLE [dbo].[Comentario](
 	IdComentario [int] IDENTITY(1,1) NOT NULL,
-	DataPostagem datetime NOT NULL,
+	DataPostagem date NOT NULL,
 	IdAluno_Comentario [int] NOT NULL,
 	IdArquivo_Comentario [int] NOT NULL,
  CONSTRAINT [PK_IdComentario] PRIMARY KEY CLUSTERED (IdComentario),
@@ -33,6 +32,21 @@ CREATE TABLE [dbo].[Aluno](
         ON DELETE CASCADE
         ON UPDATE CASCADE
  )
+
+ CREATE TABLE [dbo].Curtidas(
+	IdCurtidas int IDENTITY(1,1) NOT NULL,
+	IdArquivo int NOT NULL,
+	IdAluno int NOT NULL,
+	Quantidade int Null 
+ CONSTRAINT [PK_IdCurtidas] PRIMARY KEY CLUSTERED (IdCurtidas),
+ CONSTRAINT FK_IdAluno_Curtidas FOREIGN KEY (IdAluno)
+ REFERENCES [dbo].Aluno(IdAluno)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+ CONSTRAINT FK_IdArquivo_Curtidas FOREIGN KEY (IdArquivo)
+ REFERENCES [dbo].Arquivo(IdArquivos)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE)
  
   insert into [ProvIna_Database].[dbo].[Aluno] ([Nome],[Senha],[Email]) VALUES ('Nicole','123','ni@')
 

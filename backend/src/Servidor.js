@@ -1,6 +1,7 @@
 const express = require ('express');
 const routes = require('./router');
 const cors = require('cors');
+const morgan = require('morgan');
 
 const corsOptions ={
     
@@ -12,7 +13,9 @@ const corsOptions ={
 const app = express();
 
 app.use(cors(corsOptions));
-app.use(express.json());
+app.use(express.json({limit: '500mb'}));
+app.use(express.urlencoded({limit: '50mb', extended: true}));
+app.use(morgan("dev"));
 app.use(routes);
 
 

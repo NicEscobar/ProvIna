@@ -1,37 +1,35 @@
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import './App.css';
-import Home from './pages/Home'
-import Header from './components/Header'
-import './assets/css/base/base.css'
-import Post from './pages/Post'
-import Login from './pages/Login'
-import Register from './pages/Register'
-import SendFile from './pages/SendFile';
+import React from "react";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+
+import "./App.css";
+
+import Home from "./page/Home";
+import Login from "./page/Login";
+import Register from "./page/Register";
+import Comment from "./page/Comment";
+import NewPost from "./page/NewPost";
 
 function App() {
   return (
-    <Router>
-      <Header/>
+    <BrowserRouter>
       <Switch>
-        <Route exact path='/'>
-          <Home />
-        </Route>
-        <Route path='/posts/:id'>
-          <Post />
-        </Route>
-        <Route path='/login'>
+        <Route exact path="/">
           <Login />
         </Route>
-        <Route path='/sendfile'>
-          <SendFile />
+        <Route exact path="/posts">
+          <Home />
         </Route>
-        <Route path='/register'>
+        <Route path="/register">
           <Register />
         </Route>
+        <Route path="/posts/:postId/comments">
+          <Comment />
+        </Route>
+        <Route path="/posts/new">
+          <NewPost />
+        </Route>
       </Switch>
-
-    </Router>
-
+    </BrowserRouter>
   );
 }
 
