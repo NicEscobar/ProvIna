@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react";
+/* eslint-disable react/jsx-no-undef */
+/* eslint-disable jsx-a11y/iframe-has-title */
+import {React, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import api from '../api/api';
 import Header from "../components/Header";
-
+import LogoPdF from "../assets/img/pdf.png";
 
 
 import "./Home.css";
@@ -11,11 +13,14 @@ const Home = ({ url }) => {
 
   const [posts, setPosts] = useState([]);
   const [token, setToken] = useState([]);
+  const [IdAluno, setIdAluno] = useState([]);
+  const [curtida, setCurtida] = useState(0);
 
 
   useEffect(() => {
 
     setToken(localStorage.getItem('Token'));
+    setIdAluno(localStorage.getItem('IdAluno'));
 
     async function SQL_BuscarTodosArquivos() {
 
@@ -24,13 +29,13 @@ const Home = ({ url }) => {
       });
 
       setPosts(RespArquivos.data);
-      console.log("arquivos",RespArquivos.data)
     }
 
     SQL_BuscarTodosArquivos();
-    
 
-  }, [token, url])
+  }, [IdAluno, token])
+
+  //const handleToggleFavorite = () => {setCurtida((previous) => !previous)};
 
   return (
     <div className="home-page">
@@ -38,10 +43,17 @@ const Home = ({ url }) => {
 
       <ul>
         {posts.map((post) => {
+          console.log(post);
           return (
             <li key={post.IdArquivos}>
+              
               <div className="card-body">
-              <img src={post.URLs} alt={post.NomeArquivo}/>
+                {
+                  post.Tipo === 'pdf' ? <img src={LogoPdF} alt="Pdf" /> :
+                  <img src={post.URLs} alt={post.NomeArquivo} />
+           
+                }
+
                 <div className="description">
                   <h1>{post.NomeArquivo}</h1>
                   <p>{post.Categoria || "sem categoria"}</p>
@@ -49,11 +61,13 @@ const Home = ({ url }) => {
               </div>
               <div className="card-footer">
                 <div className="icons">
-                  <Link to={`/Comentario/' + ${post.IdArquivos}`}>
+
+                  <Link to={`/posts/${post.IdArquivos}/comentario`}>
                     <i className="fas fa-comments" />
                     <label>totalComents</label>
+
                   </Link>
-                  <a href={post.url} download>
+                  <a href={post.URLs}>
                     <label>Baixar</label>
                     <i className="fas fa-download" />
                   </a>
@@ -65,9 +79,8 @@ const Home = ({ url }) => {
       </ul>
 
       <div className="btn-new-item">
-        <Link to="/items/new">
+        <Link to="/posts/new">
           <i className="fas fa-plus-circle" />
-          teste
         </Link>
       </div>
     </div>
@@ -75,3 +88,9 @@ const Home = ({ url }) => {
 }
 
 export default Home;
+
+/*
+<Link onClick={handleToggleFavorite}>
+<i className={curtida ? "fas fa-heart" : "far fa-heart"} id={post.IdArquivos}></i>
+<label>Curtidas</label>
+</Link>*/

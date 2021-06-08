@@ -22,7 +22,7 @@ function App() {
         <Route path="/register">
           <Register />
         </Route>
-        <Route path="/posts/:postId/comments">
+        <Route path="/posts/:IdArquivos/comentario">
           <Comment />
         </Route>
         <Route path="/posts/new">

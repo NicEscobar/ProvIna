@@ -15,11 +15,13 @@ CREATE TABLE [dbo].[Aluno](
 	[Categoria] [varchar](45) NOT NULL,
 	[DataCriacao] [date] NOT NULL,
 	[URLs] [nvarchar](255) NOT NULL,
+	[Tipo] [nvarchar](50) NULL,
  CONSTRAINT [PK_IdArquivos] PRIMARY KEY CLUSTERED (IdArquivos))
 
  CREATE TABLE [dbo].[Comentario](
 	IdComentario [int] IDENTITY(1,1) NOT NULL,
 	DataPostagem date NOT NULL,
+	Texto nvarchar(255) not null,
 	IdAluno_Comentario [int] NOT NULL,
 	IdArquivo_Comentario [int] NOT NULL,
  CONSTRAINT [PK_IdComentario] PRIMARY KEY CLUSTERED (IdComentario),

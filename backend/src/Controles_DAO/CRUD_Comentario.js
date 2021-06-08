@@ -72,8 +72,10 @@ module.exports = {
                   
         var req =  new sql.Request(conn);
     
-        var comando = `	SELECT * FROM [ProvIna_Database].[dbo].[Comentario] 
-                        WHERE [IdArquivo_Comentario] = ${IdArquivo};`;
+        var comando = `	  SELECT C.IdComentario, CONVERT(varchar(10), C.[DataPostagem] ,103) AS DataPostagem , A.Nome, C.Texto FROM [ProvIna_Database].[dbo].[Comentario] AS C
+                            INNER JOIN [ProvIna_Database].[dbo].Aluno AS A
+                            ON C.IdAluno_Comentario = A.IdAluno
+                          WHERE [IdArquivo_Comentario] = ${IdArquivo};`;
           
         req.query(comando, function (err, resposta) {
             

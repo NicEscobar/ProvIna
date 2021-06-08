@@ -9,6 +9,7 @@
     background-color: rgb(30,30,30);
     margin: 20px;
     border-radius: 2px;
+    align-items: center;
   }
 
   .comment-page ul li textarea{
@@ -21,26 +22,6 @@
     border: none;
     outline: 2px;
     color: white;
-    align-items: center;
-  }
-
-  .comment-page ul li button{
-    padding: 0;
-    border:0;
-    background: none;
-    margin: 2px;
-    text-align: center;
-    border: 2px solid #03DAC6;
-    padding: 14px 40px;
-    outline: none;
-    color: white;
-    border-radius: 2px;
-    transition: 0.25s;
-    cursor: pointer;
-  }
-
-.comment-page button:hover{
-    background: #03DAC6;
   }
 
 .comment-page ul li .card-body{
@@ -53,10 +34,10 @@
     border-radius: 2px;
   }
 
-  .comment-page ul li .card-body .description h1{
+  .comment-page ul li .card-body .description .description-header h1{
     color: #fff;
-    font-size: 25px;
-    margin: 0 !important; 
+    font-size: 20px;
+    margin: 0; 
   }
 
   .comment-page ul li .card-body .description p{
@@ -66,8 +47,25 @@
     margin-left: 10px;
   }
 
-  .comment-page .card-body .send-button{
-    padding: 10px;
-    display: flex;
-    justify-content: flex-end;
+  .comment-page ul li .card-body .description p #publicationDate{
+    align-items: left;
+  }
+
+  .comment-page ul li button{
+    border:0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #03DAC6;
+    padding: 14px 40px;
+    outline: none;
+    color: white;
+    border-radius: 2px;
+    transition: 0.25s;
+    cursor: pointer;
+  }
+
+  .comment-page ul li button:hover{
+    background: #03DAC6;
   }

@@ -6,6 +6,7 @@ const modulo_cadastro = require('./Controles_DAO/CRUD_cadastro');
 const modulo_login = require('./Controles_DAO/CRUD_login');
 const modulo_arquivo = require('./Controles_DAO/CRUD_Arquivos');
 const modulo_comentario = require('./Controles_DAO/CRUD_Comentario');
+const modulo_curtida = require('./Controles_DAO/CRUD_Curtidas');
 
 const modulo_post = require('./Controles_DAO/CRUD_Arquivos');
 
@@ -27,6 +28,7 @@ routes. get('/Comentario/:IdArquivo?', modulo_comentario.SQL_BuscarComentarios);
 routes. post('/Comentario', modulo_comentario.SQL_InserirComentario);
 routes. delete('/Comentario/:IdComentario?', modulo_comentario.SQL_DeletarComentario);
 
+routes. post('/Curtida', modulo_curtida.SQL_InserirCurtidas);
 
 
 

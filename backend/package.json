@@ -1,5 +1,5 @@
 {
-  "name": "ProvIna_Backend",
+  "name": "backend",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -8,16 +8,14 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
-    "cloudinary": "^1.25.2",
+    "cloudinary": "^1.26.0",
     "cors": "^2.8.5",
+    "crypto": "^1.0.1",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
-    "jsonwebtoken": "^8.5.1",
+    "morgan": "^1.10.0",
+    "mssql": "^7.1.0",
     "multer": "^1.4.2",
-    "mysql": "^2.18.1",
-    "streamifier": "^0.1.1"
-  },
-  "devDependencies": {
     "nodemon": "^2.0.7"
   }
 }

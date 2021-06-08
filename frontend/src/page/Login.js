@@ -42,27 +42,27 @@ const Login = () => {
     }
     return(
         <div className="login-page">
-      <form className="box">
-        <h1>Login</h1>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={senha}
-          onChange={(e) => setSenha(e.target.value)}
-        />
-        <button type="submit"
-              onClick= {Logar}  >Login</button>
-        <p>
-        Ainda não é cadastrado? <Link to="/register">Clique aqui</Link> para se
-        cadastrar
-      </p>
-      </form>  
+          <form className="box">
+            <h1>Login</h1>
+            <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              value={senha}
+              onChange={(e) => setSenha(e.target.value)}
+            />
+            <button type="submit"
+                  onClick= {Logar}  >Login</button>
+            <p>
+            Ainda não é cadastrado? <Link to="/register">Clique aqui</Link> para se
+            cadastrar
+          </p>
+          </form>  
     </div>
 
 

@@ -20,8 +20,6 @@ const Register = () => {
 
   }
   async function Cadastrar(){
-
-    console.log("nada")
     
     const cadastro = await api.post('/Cadastro',{
   
@@ -31,9 +29,9 @@ const Register = () => {
       
     });
 
-    console.log("cadastro",cadastro.data.Parametro)
+    console.log("cadastro",cadastro.data.FLAG)
 
-    if (cadastro.data.Parametro === 0) {
+    if (cadastro.data.FLAG === 0) {
       history.push('/');
     }
     

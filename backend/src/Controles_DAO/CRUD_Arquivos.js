@@ -68,10 +68,12 @@ module.exports = {
         req.query(comando, function (err, resposta) {
             
           if(err) throw err;
-          //console.log("response",resposta.recordset)
+          //
+          console.log("response",resposta.recordset)
+          conn.close();
           response.json(resposta.recordset);
           
-          conn.close();
+          
         });  
       });
     },
@@ -102,7 +104,7 @@ module.exports = {
                            ON A.[IdAluno_Arquivos] = B.IdAluno
                           left JOIN [ProvIna_Database].[dbo].Comentario AS C
                             ON A.[IdAluno_Arquivos] = C.IdArquivo_Comentario
-                         WHERE A.IdArquivos = 1
+                         WHERE A.IdArquivos = ${IdArquivo}
                         Group by A.IdArquivos,A.NomeArquivo,A.Categoria,A.URLs,A.DataCriacao,A.Tipo,B.Nome
                     `;
           
@@ -148,11 +150,11 @@ module.exports = {
     async SQL_InserirArquivos (request, response){
 
       try {  
+
+          const {Data, NomeArquivo, Categoria, IdAluno_Arquivos} = request.body;
+
+          console.log("IdAluno_Arquivos",IdAluno_Arquivos)
         
-          //if(err) return response.status(401).end();
-
-          const {Data, NomeArquivo, Categoria, NumeroCurtidas, IdAluno_Arquivos} = request.body;
-
           const respUpload = await cloudinary.uploader.upload(Data, {
             upload_preset: 'dev_setups'
           })
@@ -170,11 +172,12 @@ module.exports = {
                       
             var req =  new sql.Request(conn);
         
-            var comando = `  INSERT INTO [ProvIna_Database].[dbo].[Arquivo] (IdAluno_Arquivos,NomeArquivo, Categoria, URLs, NumeroCurtidas,Tipo, DataCriacao)
-                              VALUES (${IdAluno_Arquivos},'${NomeArquivo}','${Categoria}','${URls}',${NumeroCurtidas},'${Tipo}', CONVERT(DATE, GETDATE(), 103));`;
+            var comando = `  INSERT INTO [ProvIna_Database].[dbo].[Arquivo] (IdAluno_Arquivos,NomeArquivo, Categoria, URLs,Tipo, DataCriacao)
+                              VALUES (${IdAluno_Arquivos},'${NomeArquivo}','${Categoria}','${URls}','${Tipo}', CONVERT(DATE, GETDATE(), 103));`;
               
             req.query(comando, function (err, resposta) {
-                
+              
+            
               if(err) throw err;
               conn.close();
               response.json({message: 'Arquivo Inserido'});

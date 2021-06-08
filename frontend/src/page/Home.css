@@ -9,6 +9,10 @@
   
   .home-page .btn-new-item i{
     color: #fff;
+    transition: 0.25s;
+  }
+  .home-page .btn-new-item i:hover{
+    color: #03DAC6;
   }
   
   
@@ -112,6 +116,11 @@
   .home-page ul li .card-footer .icons{
     display: flex;
     align-items: center;
+    transition: 0.25s;
+  }
+
+  .home-page ul li .card-footer .icons:hover{
+    border-color: #03DAC6;
   }
   
   .home-page ul li .card-footer .icons a{
@@ -128,6 +137,8 @@
     margin-left: 5px;
     margin-right: 5px;
   }
+
+  
   
   
   

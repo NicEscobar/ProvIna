@@ -5,9 +5,11 @@ const configiracaoSQL = {
   user: "sa",
   password: "root",
   port: 1433,
+  dialect: "mssql",
   options: {
     "encrypt": true,
-    "enableArithAbort": true
+    "enableArithAbort": true,
+    "trustServerCertificate": true
     }
 };
 
