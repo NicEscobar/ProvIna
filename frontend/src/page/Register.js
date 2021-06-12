@@ -29,7 +29,7 @@ const Register = () => {
       
     });
 
-    console.log("cadastro",cadastro.data.FLAG)
+    //console.log("cadastro",cadastro.data.FLAG)
 
     if (cadastro.data.FLAG === 0) {
       history.push('/');

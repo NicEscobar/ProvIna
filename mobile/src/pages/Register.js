@@ -19,7 +19,12 @@ function Register({navigation}){
           
         });
 
-        navigation.navigate('Login');
+        if (cadastro.data.FLAG === 0) {
+            navigation.navigate('Login');
+          }
+          
+          else console.log("nao entrou")
+        
     }
 
     return (

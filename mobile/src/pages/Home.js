@@ -90,7 +90,7 @@ function Home({ navigation }) {
         <TouchableOpacity
           style={styles.addPost}
           onPress={() => {
-            navigation.navigate("NewPost");
+            navigation.navigate("NewPost", {IdAluno: IdAluno});
           }}
         >
           <FontAwesome name="plus-circle" size={20} color="#FFF"></FontAwesome>
