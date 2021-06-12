@@ -34,12 +34,11 @@ function Login({ navigation }){
     return (
 
         <SafeAreaView style={styles.container}>
-
             <View >
                 <TextInput
                    style={styles.BoxInput}
                    placeholder="Email" 
-                   placeholderTextColor="#FFF"
+                   placeholderTextColor="#454545"
                    onChangeText={setEmailText} >          
 
                 </TextInput>
@@ -47,30 +46,29 @@ function Login({ navigation }){
                 <TextInput
                    style={styles.BoxInput}
                    placeholder="Senha" 
-                   placeholderTextColor="#FFF"
+                   placeholderTextColor="#454545"
                    onChangeText={senhaText}>                  
                 </TextInput>
             </View>
 
             <View style={styles.Buttonlogin}>
                 <Button 
-                onPress={(e)=> {Logar(e)}}
-                title="LOGIN"
-
-                size="sm"
-                type="outline"
-                color="transparent"
+                    onPress={(e)=> {Logar(e)}}
+                    title="LOGIN"
+                    size="sm"
+                    type="outline"
+                    color="transparent"
                 />
             </View>
-            <View style={styles.Buttonlogin}>
+            <View style={styles.ButtonCadastro}>
                 <Button 
-                onPress={()=> { navigation.navigate('Register')}}
-                title="CADASTRAR"
-                type="outline"
-                color="transparent"
+                    onPress={navigation.navigate('Register')}
+                    title="CADASTRAR"
+                    size="sm"
+                    type="outline"
+                    color="transparent"
                 />
             </View>
-            
     </SafeAreaView>
 
     )
@@ -92,6 +90,14 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         paddingHorizontal: 10
     },
+    ButtonCadastro: {
+        color: 'transparent',
+        justifyContent: 'center',
+        marginHorizontal: 80,
+        marginVertical: 20,
+        paddingVertical: 10,
+        paddingHorizontal: 10
+    },
     BoxInput: {
         
         borderWidth: 2,
@@ -106,7 +112,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         marginHorizontal: 40,
         marginVertical: 20,
-    }
+    },
 })
 
 export default Login;
