@@ -3,7 +3,7 @@ const configiracaoSQL = {
   server: "localhost",
   database: "ProvIna_Database",
   user: "sa",
-  password: "root",
+  password: "123",
   port: 1433,
   dialect: "mssql",
   options: {
