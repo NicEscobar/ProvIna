@@ -8,7 +8,7 @@ function Comment({ navigation }){
 
     const [post, setPost] = useState([]);
 
-    const { IdArquivos}  = navigation.state.params;
+    const { IdArquivos, IdAluno}  = navigation.state.params;
     
     const [comentario, setComentario] = useState('');
     const [todosComentarios, setTodosComentarios] = useState([]);
@@ -18,7 +18,7 @@ function Comment({ navigation }){
         await api.post('/Comentario', {
     
           Texto: comentario,
-          IdAluno: idAluno,
+          IdAluno: IdAluno,
           IdArquivo: IdArquivos
     
         });
@@ -40,7 +40,7 @@ function Comment({ navigation }){
         
         BuscarArquivo();
         BuscarComentarios();
-    
+
       }, [comentario, post.URLs]);
 
 

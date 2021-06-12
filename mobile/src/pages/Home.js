@@ -17,7 +17,7 @@ import { color } from "react-native-elements/dist/helpers";
 
 function Home({ navigation }) {
   const [posts, setPosts] = useState([]);
-  const [IdAluno, setIdAluno] = useState([]);
+  const { IdAluno}  = navigation.state.params;
 
   async function SQL_BuscarTodosArquivos() {
     api
@@ -34,14 +34,6 @@ function Home({ navigation }) {
     SQL_BuscarTodosArquivos();
   }, []);
 
-  useEffect(() => {}, [posts]);
-
-<<<<<<< HEAD
-      
-      SQL_BuscarTodosArquivos();
-                  
-      }, []);
-=======
   return (
     <View>
       {posts.map((m) => {
@@ -60,42 +52,14 @@ function Home({ navigation }) {
                       <Text style={styles.cardTitle}>{m.NomeArquivo}</Text>
                       <Text style={styles.cardDate}>{m.DataCriacao}</Text>
                       <Text style={styles.cardCategory}>{m.Categoria}</Text>
->>>>>>> 082eec8e573b7f9a78919d39b964fd2441dc54d4
 
                     </View>
                   </View>
 
-<<<<<<< HEAD
-    return(
-      <View>
-        {posts.map(m => {  
-          console.log("posts", m.IdArquivos);
-          return (    
-            <Card >
-              <Card.Title>{m.NomeArquivo}</Card.Title>
-              <Card.Divider/>
-              <View >
-                <Image
-                  style={styles.arquivo}
-                  resizeMode="cover"
-                  source={{ uri: m.URLs}}
-                />
-                <Text style={styles.name}>{m.Categoria}</Text>
-                <Text style={styles.name}>{m.DataCriacao}</Text>
-                <TouchableOpacity 
-                    style={styles.addPost} 
-                    onPress={()=> { navigation.navigate('Comment',{ IdArquivos: m.IdArquivos })}}>
-                        <FontAwesome name="align-justify" 
-                          size={20} 
-                          color="#FFF">
-                          
-                        </FontAwesome>
-               </TouchableOpacity>
-=======
                   <View style={styles.cardFooter}>
                     <TouchableOpacity
                       onPress={() => {
-                        navigation.navigate("Comment");
+                        navigation.navigate('Comment',{ IdArquivos: m.IdArquivos, IdAluno: IdAluno  });
                       }}
                     >
                       <FontAwesome
@@ -117,7 +81,6 @@ function Home({ navigation }) {
                     </TouchableOpacity>
                   </View>
                 </View>
->>>>>>> 082eec8e573b7f9a78919d39b964fd2441dc54d4
               </View>
             </Card>
           </View>

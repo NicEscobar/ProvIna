@@ -27,7 +27,7 @@ function Login({ navigation }){
         console.log("login.data.auth",login.data.auth)
 
         if(login.data.auth === true){
-            navigation.navigate('Register')
+            navigation.navigate('Home',{IdAluno: login.data.IdAluno})
         }
     }
 
@@ -40,12 +40,8 @@ function Login({ navigation }){
                    style={styles.BoxInput}
                    placeholder="Email" 
                    placeholderTextColor="#FFF"
-<<<<<<< HEAD
-                   onChangeText={setEmailText}
-                   value={email}>                  
-=======
-                   onChangeText={loginText}>                  
->>>>>>> 082eec8e573b7f9a78919d39b964fd2441dc54d4
+                   onChangeText={setEmailText} >          
+
                 </TextInput>
     
                 <TextInput
@@ -58,13 +54,9 @@ function Login({ navigation }){
 
             <View style={styles.Buttonlogin}>
                 <Button 
-<<<<<<< HEAD
                 onPress={(e)=> {Logar(e)}}
-                title="ENTRAR"
-=======
-                onPress={()=> { navigation.navigate('Home')}}
                 title="LOGIN"
->>>>>>> 082eec8e573b7f9a78919d39b964fd2441dc54d4
+
                 size="sm"
                 type="outline"
                 color="transparent"
