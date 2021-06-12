@@ -20,7 +20,8 @@ function Home({ navigation }){
 
     useEffect(() => {
 
-        SQL_BuscarTodosArquivos();
+      
+      SQL_BuscarTodosArquivos();
                   
       }, []);
 
@@ -31,6 +32,7 @@ function Home({ navigation }){
     return(
       <View>
         {posts.map(m => {  
+          console.log("posts", m.IdArquivos);
           return (    
             <Card >
               <Card.Title>{m.NomeArquivo}</Card.Title>
@@ -43,11 +45,14 @@ function Home({ navigation }){
                 />
                 <Text style={styles.name}>{m.Categoria}</Text>
                 <Text style={styles.name}>{m.DataCriacao}</Text>
-                <TouchableOpacity style={styles.addPost} onPress={()=> { navigation.navigate('Comment')}}>
-                   <FontAwesome name="align-justify" size={20} color="#FFF"></FontAwesome>
-               </TouchableOpacity>
-               <TouchableOpacity style={styles.addPost} onPress={()=> { navigation.navigate('Comment')}}>
-                   <FontAwesome name="arrow-alt-to-bottom" size={20} color="#FFF"></FontAwesome>
+                <TouchableOpacity 
+                    style={styles.addPost} 
+                    onPress={()=> { navigation.navigate('Comment',{ IdArquivos: m.IdArquivos })}}>
+                        <FontAwesome name="align-justify" 
+                          size={20} 
+                          color="#FFF">
+                          
+                        </FontAwesome>
                </TouchableOpacity>
               </View>
             </Card>

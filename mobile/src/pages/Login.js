@@ -1,12 +1,35 @@
 import React from 'react';
 import {StyleSheet, Text, View, Button,SafeAreaView, TextInput} from  'react-native';
+import api from '../api/api';
 
 
 function Login({ navigation }){
 
-    const [login, loginText] = React.useState('E-mail');
+    const [email, setEmailText] = React.useState('E-mail');
     const [senha, senhaText] = React.useState('Senha');
     
+    const Logar  = (e) => {
+        e.preventDefault();
+        LogarAluno();
+    
+    }
+
+    async function LogarAluno(){
+      
+      
+        const login = await api.post('/Login',{
+      
+          Email: email,
+          Senha: senha
+      
+        });
+    
+        console.log("login.data.auth",login.data.auth)
+
+        if(login.data.auth === true){
+            navigation.navigate('Register')
+        }
+    }
 
     return (
 
@@ -17,8 +40,8 @@ function Login({ navigation }){
                    style={styles.BoxInput}
                    placeholder="Email" 
                    placeholderTextColor="#FFF"
-                   onChangeText={loginText}
-                   value={login}>                  
+                   onChangeText={setEmailText}
+                   value={email}>                  
                 </TextInput>
     
                 <TextInput
@@ -32,7 +55,7 @@ function Login({ navigation }){
 
             <View style={styles.Buttonlogin}>
                 <Button 
-                
+                onPress={(e)=> {Logar(e)}}
                 title="ENTRAR"
                 size="sm"
                 type="outline"
