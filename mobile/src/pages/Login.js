@@ -3,6 +3,7 @@ import {StyleSheet, Text, View, Button,SafeAreaView, TextInput} from  'react-nat
 import api from '../api/api';
 
 
+
 function Login({ navigation }){
 
     const [email, setEmailText] = React.useState('E-mail');
@@ -13,6 +14,8 @@ function Login({ navigation }){
         LogarAluno();
     
     }
+    
+    
 
     async function LogarAluno(){
       
@@ -54,6 +57,7 @@ function Login({ navigation }){
             <View style={styles.Buttonlogin}>
                 <Button 
                     onPress={(e)=> {Logar(e)}}
+                    onFocus={ () => this.onFocus() }
                     title="LOGIN"
                     size="sm"
                     type="outline"
