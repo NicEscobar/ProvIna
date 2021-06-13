@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   Image,
   Linking,
+  ScrollView,
 } from "react-native";
 import { set } from "react-native-reanimated";
 
@@ -44,11 +45,11 @@ function Comment({ navigation }) {
 
     BuscarArquivo();
     BuscarComentarios();
-    console.log(IdArquivos);
+    console.log(comentario);
   }, [comentario, post.URLs]);
 
   return (
-    <View style={styles.commentPage}>
+    <ScrollView style={styles.commentPage}>
       <Card containerStyle={styles.cardBox}>
         <View style={styles.createCommentHeader}>
           <Text style={styles.titles}> Comente ! </Text>
@@ -59,7 +60,7 @@ function Comment({ navigation }) {
             multiline
             numberOfLines={4}
             value={comentario}
-            onChange={(e) => setComentario(e.target.value)}
+            onChangeText={setComentario}
           ></TextInput>
         </View>
         <View style={styles.createCommentFooter}>
@@ -67,6 +68,7 @@ function Comment({ navigation }) {
         </View>
       </Card>
 
+      
       {todosComentarios.map((coment) => {
         return (
           <Card containerStyle={styles.cardBox}>
@@ -79,29 +81,33 @@ function Comment({ navigation }) {
           </Card>
         );
       })}
-    </View>
+    </ScrollView>
   );
 }
 const styles = StyleSheet.create({
   commentPage: {
     flex: 1,
-    justifyContent: "flex-start",
     backgroundColor: "#000",
+    textAlign: "center",
   },
   cardBox: {
     borderRadius: 4,
     borderColor: "#00000000",
     backgroundColor: "rgb(18,18,18)",
     padding: 0,
+    width: 500,
+    height: 150,
+    width: "100%",
+    alignItems: "center",
   },
   createCommentHeader: {
     flex: 1,
-    textAlign: "center",
-    padding: 5,
+    padding: 2,
   },
   createCommentBody: {
     flex: 2,
     padding: 0,
+    margin: 2,
   },
   createCommentFooter: {
     flex: 1,
@@ -112,7 +118,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#000",
     borderColor: "#00000000",
     color: "#fff",
-    margin: 20,
   },
   titles: {
     fontSize: 30,

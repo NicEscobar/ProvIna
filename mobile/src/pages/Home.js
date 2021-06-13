@@ -123,6 +123,8 @@ const styles = StyleSheet.create({
     borderColor: "#00000000",
     backgroundColor: "rgb(18,18,18)",
     padding: 0,
+    width: 500,
+    height: 200,
   },
   cardTitle: {
     color: "white",
@@ -149,7 +151,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 40,
   },
   postImage: {
-    width: "50%",
+    width: 200,
+    height: 150,
     borderRadius: 2,
   },
   parentWrapper: {
@@ -166,11 +169,10 @@ const styles = StyleSheet.create({
   },
 
   cardFooter: {
-    flex: 1,
-    margin: 2,
+
+    margin: 1,
     flexDirection: "row",
     justifyContent: "flex-end",
-    padding: 10,
   },
 });
 

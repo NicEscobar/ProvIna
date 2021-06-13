@@ -13,8 +13,7 @@ import {
 import { set } from "react-native-reanimated";
 import { FontAwesome } from "@expo/vector-icons";
 
-
-import api from '../api/api';
+import api from "../api/api";
 
 function NewPost({ navigation }) {
   const { IdAluno } = navigation.state.params;
@@ -26,30 +25,23 @@ function NewPost({ navigation }) {
   const [previewSource, setPreviewSource] = useState();
   const [fileInputState, setFileInputState] = useState("");
 
-                               
-    async function EnviarArquivo(base64EncodedImage) {
+  async function EnviarArquivo(base64EncodedImage) {
+    try {
+      await api.post("/arquivo", {
+        headers: {
+          Authorization: "",
+          "Content-type": "application/json",
+        },
 
-        try {
-    
-          await api.post('/arquivo', {
-    
-            headers: {
-              'Authorization': '',
-              'Content-type': 'application/json'
-            },
-    
-            Data: base64EncodedImage,
-            NomeArquivo: nomeArquivo,
-            Categoria: categoria,
-            IdAluno_Arquivos: IdAluno
-    
-          });
-    
-        } catch (error) {
-          console.error(error);
-        } 
-    
+        Data: base64EncodedImage,
+        NomeArquivo: nomeArquivo,
+        Categoria: categoria,
+        IdAluno_Arquivos: IdAluno,
+      });
+    } catch (error) {
+      console.error(error);
     }
+  }
 
   return (
     <View style={styles.newPostPage}>
@@ -59,23 +51,26 @@ function NewPost({ navigation }) {
         </View>
         <View style={styles.newPostBody}>
           <View style={styles.sendFileButton}>
-            <TouchableOpacity
-              onPress={() => {
-              }}
-            >
+            <TouchableOpacity onPress={() => {}}>
               <FontAwesome
                 name="download"
                 size={90}
                 style={styles.btnNewItemDesign}
-                color= "#FFF"
-              ></FontAwesome>
-              <Text style={styles.titles}>Selecione o Arquivo</Text>
+                color="#FFF"
+              >
+                <Text style={styles.titles}>Selecione o Arquivo</Text>
+              </FontAwesome>
             </TouchableOpacity>
           </View>
         </View>
 
         <View style={styles.newPostFooter}>
-          <Button title="Enviar"></Button>
+          <Button
+            title="ENVIAR"
+            size="sm"
+            type="outline"
+            color="(255, 255, 255, 0)"
+          />
         </View>
       </Card>
     </View>
@@ -92,11 +87,15 @@ const styles = StyleSheet.create({
     borderColor: "#00000000",
     backgroundColor: "rgb(18,18,18)",
     padding: 0,
+    width: 600,
+    height: 250,
+    width: "100%",
+    alignItems: "center",
   },
   newPostHeader: {
     flex: 1,
     alignItems: "center",
-    padding: 5,
+    margin: 5,
   },
   sendFileButton: {
     backgroundColor: "#000",
@@ -104,11 +103,17 @@ const styles = StyleSheet.create({
   newPostBody: {
     flex: 2,
     padding: 5,
+    textAlign: "center",
   },
   newPostFooter: {
-    flex: 1,
-    alignItems: "flex-end",
-    padding: 5,
+    borderWidth: 2,
+    borderColor: "#03DAC6",
+    color: "#00000000",
+    justifyContent: "center",
+    marginHorizontal: 80,
+    marginVertical: 20,
+    paddingVertical: 10,
+    paddingHorizontal: 10,
   },
   titles: {
     fontSize: 30,
