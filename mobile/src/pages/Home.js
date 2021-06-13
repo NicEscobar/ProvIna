@@ -92,7 +92,7 @@ function Home({ navigation }) {
       <View style={styles.btnNewItem}>
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate("NewPost", { IdAluno: IdAluno });
+            navigation.navigate("NewPost",{IdAluno: IdAluno});
           }}
         >
           <FontAwesome name="plus-circle"  size={60} style={styles.btnNewItemDesign}></FontAwesome>

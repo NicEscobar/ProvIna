@@ -6,31 +6,21 @@ import api from '../api/api';
 
 function Login({ navigation }){
 
-    const [email, setEmailText] = React.useState('E-mail');
-    const [senha, senhaText] = React.useState('Senha');
-    
-    const Logar  = (e) => {
-        e.preventDefault();
-        LogarAluno();
-    
-    }
-    
+    const [email, setEmailText] = React.useState('');
+    const [senha, senhaText] = React.useState('');
     
 
     async function LogarAluno(){
-      
-      
-        const login = await api.post('/Login',{
+        
+      const login = await api.post('/Login',{
       
           Email: email,
           Senha: senha
       
         });
-    
-        console.log("login.data.auth",login.data.auth)
 
         if(login.data.auth === true){
-            navigation.navigate('Home',{IdAluno: login.data.IdAluno})
+           navigation.navigate('Home',{IdAluno: login.data.IdAluno})
         }
     }
 
@@ -56,8 +46,7 @@ function Login({ navigation }){
 
             <View style={styles.Buttonlogin}>
                 <Button 
-                    onPress={(e)=> {Logar(e)}}
-                    onFocus={ () => this.onFocus() }
+                    onPress={()=> {LogarAluno()}}
                     title="LOGIN"
                     size="sm"
                     type="outline"
@@ -66,7 +55,7 @@ function Login({ navigation }){
             </View>
             <View style={styles.ButtonCadastro}>
                 <Button 
-                    onPress={navigation.navigate('Register')}
+                    onPress={() => {navigation.navigate('Register')}}
                     title="CADASTRAR"
                     size="sm"
                     type="outline"

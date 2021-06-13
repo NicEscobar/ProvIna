@@ -12,7 +12,9 @@ import NewPost from './pages/NewPost';
 
 const Routes = createAppContainer(
     createStackNavigator({
+
         Login:{
+            
             screen: Login,
             navigationOptions: {
                title: 'Login' ,

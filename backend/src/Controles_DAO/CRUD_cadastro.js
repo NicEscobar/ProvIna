@@ -7,10 +7,6 @@ module.exports = {
        
         const {Nome, Email, Senha} = request.body; 
 
-        console.log("Nome",Nome);
-        console.log("Senha",Senha);
-        console.log("Email",Email);
-
         var conn = new sql.ConnectionPool(configuracaoSQL);
 
         conn.connect(function(err){
@@ -30,11 +26,6 @@ module.exports = {
             console.log("resposta",resposta.recordset[0]);
             
             response.json(resposta.recordset[0]);
-
-            //if (resposta.recordset == 0){
-               // response.json("Aluno cadastrado com sucesso");
-             //} else    
-                //response.json("Aluno já existe");
 
             conn.close();
           });  

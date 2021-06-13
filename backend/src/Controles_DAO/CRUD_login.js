@@ -14,8 +14,6 @@ module.exports = {
         const {Email, Senha} = request.body; 
 
         const token = jwt.sign({Email: Email}, SECRET, {expiresIn: 100000})
-
-        //console.log("Email: ", Email);
   
         var conn = new sql.ConnectionPool(configuracaoSQL);
         

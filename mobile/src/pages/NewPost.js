@@ -13,7 +13,8 @@ import {
 import { set } from "react-native-reanimated";
 import { FontAwesome } from "@expo/vector-icons";
 
-import api from "../api/api";
+
+import api from '../api/api';
 
 function NewPost({ navigation }) {
   const { IdAluno } = navigation.state.params;
@@ -25,30 +26,30 @@ function NewPost({ navigation }) {
   const [previewSource, setPreviewSource] = useState();
   const [fileInputState, setFileInputState] = useState("");
 
-  const handleSubmitFile = (e) => {
-    e.preventDefault();
+                               
+    async function EnviarArquivo(base64EncodedImage) {
 
-    if (!previewSource) return;
-    EnviarArquivo(previewSource);
-  };
-
-  async function EnviarArquivo(base64EncodedImage) {
-    try {
-      await api.post("/arquivo", {
-        headers: {
-          Authorization: "",
-          "Content-type": "application/json",
-        },
-
-        Data: base64EncodedImage,
-        NomeArquivo: nomeArquivo,
-        Categoria: categoria,
-        IdAluno_Arquivos: IdAluno,
-      });
-    } catch (error) {
-      console.error(error);
+        try {
+    
+          await api.post('/arquivo', {
+    
+            headers: {
+              'Authorization': '',
+              'Content-type': 'application/json'
+            },
+    
+            Data: base64EncodedImage,
+            NomeArquivo: nomeArquivo,
+            Categoria: categoria,
+            IdAluno_Arquivos: IdAluno
+    
+          });
+    
+        } catch (error) {
+          console.error(error);
+        } 
+    
     }
-  }
 
   return (
     <View style={styles.newPostPage}>
