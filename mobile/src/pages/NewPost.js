@@ -32,8 +32,10 @@ export default function Upload({ navigation }) {
     }
 
     const data = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      base64: true
     });
+    console.log(data);
 
     if (data.cancelled) {
       return;
@@ -57,7 +59,7 @@ export default function Upload({ navigation }) {
           'Content-type': 'application/json'
         },
 
-        Data: avatar.uri,
+        Data: `data:image/jpg;base64,${avatar.base64}`,
         NomeArquivo: nomeArquivo,
         Categoria: categoria,
         IdAluno_Arquivos: IdAluno
