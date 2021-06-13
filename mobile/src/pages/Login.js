@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     Buttonlogin: {
         borderWidth: 2,
         borderColor: '#03DAC6',
-        color: 'transparent',
+        color: "#00000000",
         justifyContent: 'center',
         marginHorizontal: 80,
         marginVertical: 20,
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10
     },
     ButtonCadastro: {
-        color: 'transparent',
+        color: "#00000000",
         justifyContent: 'center',
         marginHorizontal: 80,
         marginVertical: 20,
@@ -107,9 +107,8 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderStyle: 'solid',
         borderColor: 'rgb(187,134,252)',
-        margin: '20',
+        margin: 20,
         textAlign:'center',
-        backgroundColor: 'none',
         color: 'white',
         justifyContent: 'center',
         paddingVertical: 20,
