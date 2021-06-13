@@ -11,11 +11,11 @@ import {
 import { Card, ListItem, Button, Icon } from "react-native-elements";
 import { AsyncStorage } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
-
 import api from "../api/api";
 import { color } from "react-native-elements/dist/helpers";
 
 function Home({ navigation }) {
+  const cloudinaryUrl = 'https://res.cloudinary.com/provina/image/upload/';
   const [posts, setPosts] = useState([]);
   const { IdAluno } = navigation.state.params;
 
@@ -40,13 +40,11 @@ function Home({ navigation }) {
       {posts.map((m) => {
         return (
           <Card containerStyle={styles.cardBox}>
-            <View>
-              <View>
                 <View style={styles.cardHeader}>
                   <Image
                     style={styles.postImage}
                     resizeMode="cover"
-                    source={{ uri: m.URLs }}
+                    source={{ uri: cloudinaryUrl + m.URLs }}
                   />
                   <View style={styles.cardBody}>
                     <Text style={styles.cardTitle}>{m.NomeArquivo}</Text>
@@ -72,22 +70,14 @@ function Home({ navigation }) {
                   </TouchableOpacity>
 
                   <TouchableOpacity
-                    onPress={() => {
-                      navigation.navigate("Comment", {
-                        IdArquivos: m.IdArquivos,
-                        IdAluno: IdAluno,
-                      });
-                    }}
-                  >
+                    onPress={() => Linking.openURL(cloudinaryUrl + "/fl_attachment/" +m.URLs)}>
                     <FontAwesome
                       name="download"
-                      size={25}
+                      size={85}
                       color="#FFF"
                     > </FontAwesome>
                   </TouchableOpacity>
                 </View>
-              </View>
-            </View>
           </Card>
         );
       })}
@@ -125,6 +115,8 @@ const styles = StyleSheet.create({
     borderColor: "#00000000",
     backgroundColor: "rgb(18,18,18)",
     padding: 0,
+    width: 400,
+    height: 200,
   },
   cardTitle: {
     color: "white",
@@ -151,7 +143,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 40,
   },
   postImage: {
-    width: "50%",
+    width: 200,
+    height: 150,
     borderRadius: 2,
   },
   parentWrapper: {
@@ -168,11 +161,10 @@ const styles = StyleSheet.create({
   },
 
   cardFooter: {
-    flex: 1,
-    margin: 6,
+
+    margin: 1,
     flexDirection: "row",
     justifyContent: "flex-end",
-    padding: 10,
   },
 });
 

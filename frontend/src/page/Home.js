@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/iframe-has-title */
 import {React, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import api from '../api/api';
+import api, { STORAGE_URL } from '../api/api';
 import Header from "../components/Header";
 import LogoPdF from "../assets/img/pdf.png";
 
@@ -11,6 +11,7 @@ import "./Home.css";
 
 const Home = ({ url }) => {
 
+  const cloudinaryUrl = 'https://res.cloudinary.com/provina/image/upload/';
   const [posts, setPosts] = useState([]);
   const [token, setToken] = useState([]);
   const [IdAluno, setIdAluno] = useState([]);
@@ -50,7 +51,7 @@ const Home = ({ url }) => {
               <div className="card-body">
                 {
                   post.Tipo === 'pdf' ? <img src={LogoPdF} alt="Pdf" /> :
-                  <img src={post.URLs} alt={post.NomeArquivo} />
+                  <img src={cloudinaryUrl + post.URLs} alt={post.NomeArquivo} />
            
                 }
 
@@ -67,7 +68,7 @@ const Home = ({ url }) => {
                     <label>totalComents</label>
 
                   </Link>
-                  <a href={post.URLs}>
+                  <a href={cloudinaryUrl + "/fl_attachment/" +post.URLs}>
                     <label>Baixar</label>
                     <i className="fas fa-download" />
                   </a>

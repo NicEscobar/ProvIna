@@ -5,7 +5,11 @@ const api = axios.create({
     baseURL: 'http://localhost:3333'
 
 });
- 
+
+export const STORAGE_URL = process.env.REACT_APP_API_STORAGE;
+
+console.log(STORAGE_URL);
+
 export default api;
 
 /*
