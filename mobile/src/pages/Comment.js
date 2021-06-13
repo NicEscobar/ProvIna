@@ -18,12 +18,10 @@ import api from "../api/api";
 function Comment({ navigation }) {
   const [post, setPost] = useState([]);
 
-  const { IdArquivos, IdAluno } = navigation.state.params;
-
+  const { IdArquivos, IdAluno, Url } = navigation.state.params;
+  const cloudinaryUrl = 'https://res.cloudinary.com/provina/image/upload/';
   const [comentario, setComentario] = useState("");
-  const [todosComentarios, setTodosComentarios] = useState([]);
-
-  
+  const [todosComentarios, setTodosComentarios] = useState([]); 
  
   async function BuscarArquivo() {
     const respArquivo = await api.get("/arquivo/" + IdArquivos, {});
@@ -57,31 +55,47 @@ function Comment({ navigation }) {
     <ScrollView style={styles.commentPage}>
       <Card containerStyle={styles.cardBox}>
         <View style={styles.createCommentHeader}>
-          <Text style={styles.titles}> Comente ! </Text>
+          <Image
+                      style={styles.postImage}
+                      resizeMode="cover"
+                      source={{uri: cloudinaryUrl + Url }}
+                    />
         </View>
         <View style={styles.createCommentBody}>
           <TextInput
             style={styles.createCommentInput}
             multiline
+            placeholder="Deixe o seu comentário aqui"
+            placeholderTextColor="#454545" 
             numberOfLines={4}
             value={comentario}
             onChangeText={setComentario}
           ></TextInput>
         </View>
         <View style={styles.createCommentFooter}>
-          <Button onPress={SalvarComentario} title="Enviar"></Button>
+          <Button 
+            onPress={SalvarComentario} 
+            title="Enviar"
+            size="sm"
+            type="outline"
+            color="(255, 255, 255, 0)"
+          ></Button>
         </View>
       </Card>
 
-      
       {todosComentarios.map((coment) => {
         return (
           <Card containerStyle={styles.cardBox}>
             <View style={styles.commentHeader}></View>
-            <View style={styles.commentBody}>
-            <Text style={styles.titles}> {coment.Texto} </Text>
-             
-            </View>
+              <View >
+                <View style={styles.commentBody}>
+                  <Text style={styles.titles}> {coment.Texto} </Text> 
+                </View> 
+                <View style={styles.commentName} >
+                  <Text style={styles.titles}> {coment.Nome} </Text> 
+                  <Text style={styles.titles}> {coment.DataPostagem} </Text>   
+                </View>    
+              </View>
             <View style={styles.commentFooter}></View>
           </Card>
         );
@@ -100,17 +114,19 @@ const styles = StyleSheet.create({
     borderColor: "#00000000",
     backgroundColor: "rgb(18,18,18)",
     padding: 0,
-    width: 500,
-    height: 150,
-    width: "100%",
+    //width: 500,
+    //height: 150,
+    //width: "100%",
     alignItems: "center",
   },
   createCommentHeader: {
     flex: 1,
     padding: 2,
+    marginRight: 5,
   },
   createCommentBody: {
-    flex: 2,
+    flex: 1,
+    width: "100%",
     padding: 0,
     margin: 2,
   },
@@ -126,6 +142,15 @@ const styles = StyleSheet.create({
   },
   titles: {
     fontSize: 30,
+    color: "#fff",
+  },
+  postImage: {
+    width: 200,
+    height: 150,
+    borderRadius: 2,
+  },
+  commentName: {
+    fontSize: 5,
     color: "#fff",
   },
 });

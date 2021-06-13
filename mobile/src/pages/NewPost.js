@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, TouchableOpacity, Text, StyleSheet, Image, TextInput } from "react-native";
 
 import Constants from "expo-constants";
@@ -18,14 +18,15 @@ export default function Upload({ navigation }) {
 
   const { IdAluno } = navigation.state.params;
 
+  async function limparPag() {}
+
   async function imagePickerCall() {
     
     if (Constants.platform.ios) {
        
-      const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+      const { status } = await Permissions.askAsync(Permissions.MEDIA_LIBRARY_WRITE_ONLY);
 
-      if (status !== "granted") {
-        alert("Nós precisamos dessa permissão.");
+      if (status !== "granted") { alert("Nós precisamos dessa permissão.");
         return;
       }
     }
@@ -46,10 +47,10 @@ export default function Upload({ navigation }) {
   }
 
   async function EnviarArquivo() {
-    
+
     try {
 
-      await api.post('/arquivo', {
+     await api.post('/arquivo', {
 
         headers: {
           'Authorization': '',
@@ -63,10 +64,17 @@ export default function Upload({ navigation }) {
 
       });
 
+      navigation.navigate('Home',{IdAluno: IdAluno})
+
     } catch (error) {
       console.error(error);
     }
   }
+
+  useEffect(() => {
+    
+    
+  }, [avatar, nomeArquivo,categoria]);
 
   return (
     <View style={styles.container}>
@@ -75,7 +83,8 @@ export default function Upload({ navigation }) {
                    style={styles.BoxInput}
                    placeholder="Nome do Arquivo" 
                    placeholderTextColor="#454545"
-                   onChangeText={setNomeArquivo} >          
+                   onChangeText={setNomeArquivo}
+                   value={nomeArquivo} >          
 
                 </TextInput>
     
@@ -83,7 +92,8 @@ export default function Upload({ navigation }) {
                    style={styles.BoxInput}
                    placeholder="Categoria" 
                    placeholderTextColor="#454545"
-                   onChangeText={setCategoria}>                  
+                   onChangeText={setCategoria}
+                   value={categoria}>                  
                 </TextInput>
             </View>
       <Image

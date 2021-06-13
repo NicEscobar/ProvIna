@@ -69,7 +69,7 @@ module.exports = {
             
           if(err) throw err;
           //
-          console.log("response",resposta.recordset)
+         
           conn.close();
           response.json(resposta.recordset);
           
@@ -152,9 +152,7 @@ module.exports = {
       try {  
 
           const {Data, NomeArquivo, Categoria, IdAluno_Arquivos} = request.body;
-
-          console.log("Data")
-        
+    
           const respUpload = await cloudinary.uploader.upload(Data, {
             upload_preset: 'dev_setups'
           })
@@ -190,8 +188,5 @@ module.exports = {
         response.status(500).json({err: 'errou'});
 
       }
-    
-      
-      
     }
 }

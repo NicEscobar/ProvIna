@@ -31,9 +31,10 @@ function Home({ navigation }) {
   }
 
   useEffect(() => {
+
     SQL_BuscarTodosArquivos();
-    console.log(posts);
-  }, []);
+    
+  }, [posts]);
 
   return (
     <View style={styles.homePage}>
@@ -52,13 +53,14 @@ function Home({ navigation }) {
                     <Text style={styles.cardCategory}>{m.Categoria}</Text>
                   </View>
                 </View>
-
-                <View style={styles.cardFooter}>
+              <View style={styles.cardFooter}>
+                <View style={styles.cardIcon}>
                   <TouchableOpacity
                     onPress={() => {
                       navigation.navigate("Comment", {
                         IdArquivos: m.IdArquivos,
                         IdAluno: IdAluno,
+                        Url: m.URLs
                       });
                     }}
                   >
@@ -68,16 +70,18 @@ function Home({ navigation }) {
                       color="#FFF"
                     ></FontAwesome>
                   </TouchableOpacity>
-
+                </View>
+                <View style={styles.cardIcon}>
                   <TouchableOpacity
-                    onPress={() => Linking.openURL(cloudinaryUrl + "/fl_attachment/" +m.URLs)}>
+                    onPress={() => Linking.openURL(cloudinaryUrl + "/fl_attachment/" + m.URLs)}>
                     <FontAwesome
                       name="download"
-                      size={85}
+                      size={25}
                       color="#FFF"
                     > </FontAwesome>
                   </TouchableOpacity>
                 </View>
+              </View>
           </Card>
         );
       })}
@@ -115,7 +119,7 @@ const styles = StyleSheet.create({
     borderColor: "#00000000",
     backgroundColor: "rgb(18,18,18)",
     padding: 0,
-    width: 400,
+   // width: 400,
     height: 200,
   },
   cardTitle: {
@@ -165,6 +169,11 @@ const styles = StyleSheet.create({
     margin: 1,
     flexDirection: "row",
     justifyContent: "flex-end",
+  },
+  cardIcon: {
+    flexDirection: "row",
+    marginHorizontal: "60",
+    paddingHorizontal: "60"
   },
 });
 
