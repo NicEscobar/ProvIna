@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Card, ListItem, Button, Icon } from "react-native-elements";
 
-import ImagePicker  from "react-native-image-picker";
+import * as ImagePicker from 'react-native-image-picker'
 
 import {
   StyleSheet,
@@ -26,9 +26,7 @@ function NewPost({ navigation }) {
   const [nomeArquivo, setNomeArquivo] = useState("");
   const [categoria, setCategoria] = useState("");
 
-  const [selectedFile, setSelectedFile] = useState("");
-  const [previewSource, setPreviewSource] = useState();
-  const [fileInputState, setFileInputState] = useState("");
+  const [photo, setPhoto] = useState([]);
 
     
   function handleChoosePhoto(){
@@ -40,9 +38,9 @@ function NewPost({ navigation }) {
       ImagePicker.launchImageLibrary(option, response => {
         console.log("response", response);
         if (response.uri){
-          this.setState({ photo: response});
+         // this.setPhoto({response});
         }
-
+        
       });
     } 
   
@@ -94,11 +92,7 @@ function NewPost({ navigation }) {
           </View>
         </View>
         <View>
-          <Image 
-            source={{uri: photo.uri}}
-            style={{ width: 300, height: 300}}
-          >
-          </Image>     
+    
         </View>
         <View style={styles.newPostFooter}>
           <Button title="Enviar"></Button>

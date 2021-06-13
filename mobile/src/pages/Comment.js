@@ -22,30 +22,35 @@ function Comment({ navigation }) {
   const [comentario, setComentario] = useState("");
   const [todosComentarios, setTodosComentarios] = useState([]);
 
+  
+ 
+  async function BuscarArquivo() {
+    const respArquivo = await api.get("/arquivo/" + IdArquivos, {});
+    setPost(respArquivo.data[0]);
+  }
+
+  async function BuscarComentarios() {
+    const respComent = await api.get("/Comentario/" + IdArquivos, {});
+
+    setTodosComentarios(respComent.data);
+  }
+  useEffect(() => {
+
+  },[comentario,todosComentarios,post]);
+  
+  useEffect(() => {
+    BuscarArquivo();
+    BuscarComentarios();
+  }, []);
+
   async function SalvarComentario() {
     await api.post("/Comentario", {
       Texto: comentario,
       IdAluno: IdAluno,
       IdArquivo: IdArquivos,
     });
-  }
-
-  useEffect(() => {
-    async function BuscarArquivo() {
-      const respArquivo = await api.get("/arquivo/" + IdArquivos, {});
-      setPost(respArquivo.data[0]);
-    }
-
-    async function BuscarComentarios() {
-      const respComent = await api.get("/Comentario/" + IdArquivos, {});
-
-      setTodosComentarios(respComent.data);
-    }
-
-    BuscarArquivo();
     BuscarComentarios();
-    console.log(IdArquivos);
-  }, [comentario, post.URLs]);
+  }
 
   return (
     <View style={styles.commentPage}>
