@@ -122,24 +122,24 @@ const styles = StyleSheet.create({
   },
   cardBox: {
     borderRadius: 4,
-    borderColor: "trasparent",
+    borderColor: "#00000000",
     backgroundColor: "rgb(18,18,18)",
     padding: 0,
   },
   cardTitle: {
     color: "white",
-    fontSize: "35px",
+    fontSize: 35,
     marginLeft: 3,
   },
   cardDate: {
     color: "white",
-    fontSize: "20px",
+    fontSize: 20,
     marginBottom: 5,
     marginLeft: 3,
   },
   cardCategory: {
     color: "white",
-    fontSize: "20px",
+    fontSize: 20,
     marginBottom: 5,
     marginLeft: 3,
   },

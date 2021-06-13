@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
   },
   cardBox: {
     borderRadius: 4,
-    borderColor: "trasparent",
+    borderColor: "#00000000",
     backgroundColor: "rgb(18,18,18)",
     padding: 0,
   },
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
   createCommentInput: {
     borderRadius: 4,
     backgroundColor: "#000",
-    borderColor: "transparent",
+    borderColor: "#00000000",
     color: "#fff",
     margin: 20,
   },
