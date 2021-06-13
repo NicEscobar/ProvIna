@@ -73,6 +73,7 @@ function Home({ navigation }) {
                             navigation.navigate("Comment", {
                               IdArquivos: m.IdArquivos,
                               IdAluno: IdAluno,
+                              Url: m.URLs
                             });
                           }}
                         >
