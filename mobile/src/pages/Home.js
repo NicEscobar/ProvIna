@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Image,
   Linking,
+  ScrollView,
 } from "react-native";
 import { Card, ListItem, Button, Icon } from "react-native-elements";
 import { AsyncStorage } from "react-native";
@@ -37,65 +38,71 @@ function Home({ navigation }) {
 
   return (
     <View style={styles.homePage}>
-      {posts.map((m) => {
-        return (
-          <Card containerStyle={styles.cardBox}>
-            <View style={styles.cardDesign}>
-              <View style={styles.cardHeader}>
-                <Image
-                  style={styles.postImage}
-                  resizeMode="cover"
-                  source={{ uri: cloudinaryUrl + m.URLs }}
-                />
-                <View style={styles.cardBody}>
-                  <Text style={styles.cardTitle}>{m.NomeArquivo}</Text>
-                  <Text style={styles.cardDate}>{m.DataCriacao}</Text>
-                  <Text style={styles.cardCategory}>{m.Categoria}</Text>
-                </View>
-              </View>
-              <View style={styles.cardFooter}>
-                <TouchableOpacity
-                  onPress={() => {
-                    navigation.navigate("Comment", {
-                      IdArquivos: m.IdArquivos,
-                      IdAluno: IdAluno,
-                    });
-                  }}
-                >
-                  <FontAwesome
-                    name="comments"
-                    size={30}
-                    color="#FFF"
-                  ></FontAwesome>
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                  onPress={() =>
-                    Linking.openURL(cloudinaryUrl + "/fl_attachment/" + m.URLs)
-                  }
-                >
-                  <FontAwesome name="download" size={25} color="#FFF">
-                    {" "}
-                  </FontAwesome>
-                </TouchableOpacity>
-              </View>
-            </View>
-          </Card>
-        );
-      })}
-      <View style={styles.btnNewItem}>
-        <TouchableOpacity
+      <View style={styles.Buttonlogin}>
+        <Button
           onPress={() => {
             navigation.navigate("NewPost", { IdAluno: IdAluno });
           }}
-        >
-          <FontAwesome
-            name="plus-circle"
-            size={60}
-            style={styles.btnNewItemDesign}
-          ></FontAwesome>
-        </TouchableOpacity>
+          title="Enviar Arquivo"
+          size="sm"
+          type="outline"
+          color="(255, 255, 255, 0)"
+        />
       </View>
+
+      <ScrollView>
+        {posts.map((m) => {
+          return (
+            <Card containerStyle={styles.cardBox}>
+              <View style={styles.cardDesign}>
+                <View style={styles.cardHeader}>
+                  <Image
+                    style={styles.postImage}
+                    resizeMode="cover"
+                    source={{ uri: cloudinaryUrl + m.URLs }}
+                  />
+                  <View style={styles.cardBody}>
+                    <Text style={styles.cardTitle}>{m.NomeArquivo}</Text>
+                    <Text style={styles.cardDate}>{m.DataCriacao}</Text>
+                    <Text style={styles.cardCategory}>{m.Categoria}</Text>
+                    <View style={styles.cardFooter}>
+                      <View style={styles.actionButton}>
+                        <TouchableOpacity
+                          onPress={() => {
+                            navigation.navigate("Comment", {
+                              IdArquivos: m.IdArquivos,
+                              IdAluno: IdAluno,
+                            });
+                          }}
+                        >
+                          <FontAwesome
+                            name="comments"
+                            size={30}
+                            color="#FFF"
+                          ></FontAwesome>
+                        </TouchableOpacity>
+                      </View>
+                      <View style={styles.actionButton}>
+                        <TouchableOpacity
+                          onPress={() =>
+                            Linking.openURL(
+                              cloudinaryUrl + "/fl_attachment/" + m.URLs
+                            )
+                          }
+                        >
+                          <FontAwesome name="download" size={25} color="#FFF">
+                            {" "}
+                          </FontAwesome>
+                        </TouchableOpacity>
+                      </View>
+                    </View>
+                  </View>
+                </View>
+              </View>
+            </Card>
+          );
+        })}
+      </ScrollView>
     </View>
   );
 }
@@ -106,25 +113,31 @@ const styles = StyleSheet.create({
     backgroundColor: "#000",
   },
   cardBox: {
+    zIndex: 10,
     borderRadius: 4,
     borderColor: "#00000000",
     backgroundColor: "rgb(18,18,18)",
     padding: 0,
+    margin: 0,
     width: 400,
     height: 200,
+    marginBottom: 10,
   },
   cardHeader: {
-    flex: 2,
     flexDirection: "row",
   },
   cardBody: {
-    flex: 2,
-    flexDirection: "column",
+    flex: 1,
+    //flexDirection: "column",
   },
   cardFooter: {
-    margin: 1,
-    padding: 2,
     flexDirection: "row",
+    flex: 1,
+    justifyContent: "flex-end",
+    alignItems: "flex-end",
+  },
+  actionButton: {
+    marginLeft: 10,
   },
 
   cardTitle: {
@@ -155,11 +168,12 @@ const styles = StyleSheet.create({
     zIndex: 10,
   },
 
-  btnNewItem: {
-    position: "absolute",
-    right: 30,
-    bottom: 30,
-    zIndex: 10,
+  Buttonlogin: {
+    borderWidth: 2,
+    borderColor: "#03DAC6",
+    color: "#00000000",
+    justifyContent: "center",
+    marginBottom: 10,
   },
 });
 
