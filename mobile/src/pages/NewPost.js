@@ -46,9 +46,6 @@ export default function Upload({ navigation }) {
   }
 
   async function EnviarArquivo() {
-
-    console.log("avatar", avatar.uri)
-
     
     try {
 
@@ -69,12 +66,6 @@ export default function Upload({ navigation }) {
     } catch (error) {
       console.error(error);
     }
-  }
-
-  async function uploadImage() {
-
-    console.log("avatar", avatar.uri)
-    //await Axios.post("http://localhost:3333/files", data);
   }
 
   return (

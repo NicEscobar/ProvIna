@@ -158,8 +158,6 @@ module.exports = {
           const respUpload = await cloudinary.uploader.upload(Data, {
             upload_preset: 'dev_setups'
           })
-          
-          console.log("respUpload",respUpload);
 
           URls = "v" + respUpload.version + "/" + respUpload.public_id + "." + respUpload.format;
           Tipo = respUpload.format;
