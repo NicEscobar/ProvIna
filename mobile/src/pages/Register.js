@@ -5,12 +5,16 @@ import api from '../api/api';
 
 function Register({navigation}){
 
-    const [nome, nomeText] = React.useState('Nome');
-    const [email, emailText] = React.useState('E-mail');
-    const [senha, senhaText] = React.useState('Senha');
+    const [nome, nomeText] = React.useState('');
+    const [email, emailText] = React.useState('');
+    const [senha, senhaText] = React.useState('');
 
     async function Cadastrar(){
-    
+        
+        if(nome == '' || email === '' || senha===''){
+            return navigation.navigate('Login');
+        }
+
         const cadastro = await api.post('/Cadastro',{
       
           Nome: nome,
@@ -36,6 +40,7 @@ function Register({navigation}){
                placeholder="Nome" 
                placeholderTextColor="#454545"
                onChangeText={nomeText}>
+             
                                
             </TextInput>
 
