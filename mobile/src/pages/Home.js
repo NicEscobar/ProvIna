@@ -115,7 +115,6 @@ const styles = StyleSheet.create({
     zIndex: 10,
   },
   btnNewItemDesign: {
-    size: 60,
     color: "#FFF",
     zIndex: 10
   },

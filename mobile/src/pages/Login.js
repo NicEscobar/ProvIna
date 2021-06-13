@@ -61,7 +61,7 @@ function Login({ navigation }){
                     title="LOGIN"
                     size="sm"
                     type="outline"
-                    color="transparent"
+                    color="(255, 255, 255, 0)"
                 />
             </View>
             <View style={styles.ButtonCadastro}>
@@ -70,7 +70,7 @@ function Login({ navigation }){
                     title="CADASTRAR"
                     size="sm"
                     type="outline"
-                    color="transparent"
+                    color="(255, 255, 255, 0)"
                 />
             </View>
     </SafeAreaView>
