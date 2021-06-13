@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import {StyleSheet, Text, View,SafeAreaView, TouchableOpacity, Image,Linking } from  'react-native';
 
+
 import api from '../api/api';
 
 function NewPost({ navigation }){
@@ -22,7 +23,8 @@ function NewPost({ navigation }){
     }
 
 
-
+    console.log("id",IdAluno)
+                                                               
     async function EnviarArquivo(base64EncodedImage) {
 
         try {

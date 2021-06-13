@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         paddingHorizontal: 10
     },
-    ButtonCadastro: {
+    ButtonCadastro: {        
         color: 'transparent',
         justifyContent: 'center',
         marginHorizontal: 80,
