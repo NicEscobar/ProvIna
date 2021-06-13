@@ -55,7 +55,7 @@ function Comment({ navigation }) {
 
   return (
     <ScrollView style={styles.commentPage}>
-      <Card containerStyle={styles.cardBox}>
+      <Card containerStyle={styles.cardBox} alignItems= "center">
         <View style={styles.createCommentHeader}>
           <Text style={styles.titles}> Comente ! </Text>
         </View>
@@ -63,7 +63,7 @@ function Comment({ navigation }) {
           <TextInput
             style={styles.createCommentInput}
             multiline
-            numberOfLines={4}
+            numberOfLines={10}
             value={comentario}
             onChangeText={setComentario}
           ></TextInput>
@@ -79,8 +79,9 @@ function Comment({ navigation }) {
           <Card containerStyle={styles.cardBox}>
             <View style={styles.commentHeader}></View>
             <View style={styles.commentBody}>
+            <Text style={styles.Name}> {coment.Nome} </Text>
+            <Text style={styles.Data}> {coment.DataPostagem} </Text>
             <Text style={styles.titles}> {coment.Texto} </Text>
-             
             </View>
             <View style={styles.commentFooter}></View>
           </Card>
@@ -103,7 +104,6 @@ const styles = StyleSheet.create({
     width: 500,
     height: 150,
     width: "100%",
-    alignItems: "center",
   },
   createCommentHeader: {
     flex: 1,
@@ -126,6 +126,15 @@ const styles = StyleSheet.create({
   },
   titles: {
     fontSize: 30,
+    color: "#fff",
+  },
+  Name: {
+    fontSize: 30,
+    color: "#fff",
+    
+  },
+  Data: {
+    fontSize: 20,
     color: "#fff",
   },
 });
