@@ -18,7 +18,8 @@ const Routes = createAppContainer(
             screen: Login,
             navigationOptions: {
                title: 'Login' ,
-               headerTitleAlign: 'center'
+               headerTitleAlign: 'center',
+               headerShown:false
             },    
 
         },
@@ -26,7 +27,7 @@ const Routes = createAppContainer(
             screen: Home,
             navigationOptions: {
                title: 'Home' ,
-               headerTitleAlign: 'center'
+               headerTitleAlign: 'center',
             },    
 
         },
@@ -44,7 +45,10 @@ const Routes = createAppContainer(
         defaultNavigationOptions:{ 
             headerTintColor: '#FFF',
             headerStyle: {
-                backgroundColor: '#000',
+                shadowColor: 'transparent',
+                backgroundColor: '#181818',
+                elevation: 0,
+                shadowOpacity: 0
             },
 
 

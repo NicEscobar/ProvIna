@@ -17,7 +17,7 @@ import { color } from "react-native-elements/dist/helpers";
 
 function Home({ navigation }) {
   const [posts, setPosts] = useState([]);
-  const { IdAluno}  = navigation.state.params;
+  const { IdAluno } = navigation.state.params;
 
   async function SQL_BuscarTodosArquivos() {
     api
@@ -32,68 +32,70 @@ function Home({ navigation }) {
 
   useEffect(() => {
     SQL_BuscarTodosArquivos();
+    console.log(posts);
   }, []);
 
   return (
-    <View>
+    <View style={styles.homePage}>
       {posts.map((m) => {
         return (
-          <View style={styles.homePage}>
-            <Card containerStyle={styles.cardBox}>
+          <Card containerStyle={styles.cardBox}>
+            <View>
               <View>
-                <View>
-                  <View style={styles.cardHeader}>
-                    <Image
-                      style={styles.postImage}
-                      resizeMode="cover"
-                      source={{ uri: m.URLs }}
-                    />
-                    <View style={styles.cardBody}>
-                      <Text style={styles.cardTitle}>{m.NomeArquivo}</Text>
-                      <Text style={styles.cardDate}>{m.DataCriacao}</Text>
-                      <Text style={styles.cardCategory}>{m.Categoria}</Text>
-
-                    </View>
-                  </View>
-
-                  <View style={styles.cardFooter}>
-                    <TouchableOpacity
-                      onPress={() => {
-                        navigation.navigate('Comment',{ IdArquivos: m.IdArquivos, IdAluno: IdAluno  });
-                      }}
-                    >
-                      <FontAwesome
-                        name="align-justify"
-                        size={20}
-                        color="#FFF"
-                      ></FontAwesome>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                      onPress={() => {
-                        navigation.navigate("Comment");
-                      }}
-                    >
-                      <FontAwesome
-                        name="arrow-alt-to-bottom"
-                        size={20}
-                        color="#FFF"
-                      ></FontAwesome>
-                    </TouchableOpacity>
+                <View style={styles.cardHeader}>
+                  <Image
+                    style={styles.postImage}
+                    resizeMode="cover"
+                    source={{ uri: m.URLs }}
+                  />
+                  <View style={styles.cardBody}>
+                    <Text style={styles.cardTitle}>{m.NomeArquivo}</Text>
+                    <Text style={styles.cardDate}>{m.DataCriacao}</Text>
+                    <Text style={styles.cardCategory}>{m.Categoria}</Text>
                   </View>
                 </View>
+
+                <View style={styles.cardFooter}>
+                  <TouchableOpacity
+                    onPress={() => {
+                      navigation.navigate("Comment", {
+                        IdArquivos: m.IdArquivos,
+                        IdAluno: IdAluno,
+                      });
+                    }}
+                  >
+                    <FontAwesome
+                      name="comments"
+                      size={25}
+                      color="#FFF"
+                    ></FontAwesome>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={() => {
+                      navigation.navigate("Comment");
+                    }}
+                  >
+                    <FontAwesome
+                      name="download"
+                      size={25}
+                      color="#FFF"
+                    >onPress={() => {
+                      navigation.navigate("Comment");
+                    }} </FontAwesome>
+                  </TouchableOpacity>
+                </View>
               </View>
-            </Card>
-          </View>
+            </View>
+          </Card>
         );
       })}
-      <View>
+      <View style={styles.btnNewItem}>
         <TouchableOpacity
-          style={styles.addPost}
           onPress={() => {
             navigation.navigate("NewPost",{IdAluno: IdAluno});
           }}
         >
-          <FontAwesome name="plus-circle" size={20} color="#FFF"></FontAwesome>
+          <FontAwesome name="plus-circle"  size={60} style={styles.btnNewItemDesign}></FontAwesome>
         </TouchableOpacity>
       </View>
     </View>
@@ -101,36 +103,41 @@ function Home({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    elevation: 8,
-    justifyContent: "center",
-  },
   homePage: {
-    backgroundColor: '#000',
-
+    flex: 1,
+    justifyContent: "flex-start",
+    backgroundColor: "#000",
+  },
+  btnNewItem: {
+    position: 'absolute',
+    right: 30,
+    bottom: 30,
+    zIndex: 10,
+  },
+  btnNewItemDesign: {
+    color: "#FFF",
+    zIndex: 10
   },
   cardBox: {
     borderRadius: 4,
-    borderColor: 'trasparent',
+    borderColor: "trasparent",
     backgroundColor: "rgb(18,18,18)",
     padding: 0,
   },
   cardTitle: {
-    color: 'white',
-    fontSize: '35px',
+    color: "white",
+    fontSize: "35px",
     marginLeft: 3,
   },
   cardDate: {
-    color: 'white',
-    fontSize: '20px',
+    color: "white",
+    fontSize: "20px",
     marginBottom: 5,
     marginLeft: 3,
-
   },
   cardCategory: {
-    color: 'white',
-    fontSize: '20px',
+    color: "white",
+    fontSize: "20px",
     marginBottom: 5,
     marginLeft: 3,
   },
@@ -141,16 +148,6 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
     paddingHorizontal: 40,
   },
-  addPost: {
-    width: 50,
-    height: 50,
-    backgroundColor: "#000",
-    borderRadius: 100,
-    justifyContent: "center",
-    alignItems: "center",
-    //marginLeft: 60
-  },
-
   postImage: {
     width: "50%",
     borderRadius: 2,

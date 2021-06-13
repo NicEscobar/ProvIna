@@ -66,7 +66,7 @@ function Register({navigation}){
             onPress={()=> { Cadastrar()}}
             title="CADASTRAR"
             type="outline"
-            color="transparent"
+            color="(255, 255, 255, 0)"
             accessibilityLabel="Learn more about this purple button"
             />
         </View>

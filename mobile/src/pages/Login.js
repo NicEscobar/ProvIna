@@ -3,6 +3,7 @@ import {StyleSheet, Text, View, Button,SafeAreaView, TextInput} from  'react-nat
 import api from '../api/api';
 
 
+
 function Login({ navigation }){
 
     const [email, setEmailText] = React.useState('');
@@ -10,8 +11,6 @@ function Login({ navigation }){
     
 
     async function LogarAluno(){
-      
-      console.log("aqui")
         
       const login = await api.post('/Login',{
       
@@ -51,7 +50,7 @@ function Login({ navigation }){
                     title="LOGIN"
                     size="sm"
                     type="outline"
-                    color="transparent"
+                    color="(255, 255, 255, 0)"
                 />
             </View>
             <View style={styles.ButtonCadastro}>
@@ -60,7 +59,7 @@ function Login({ navigation }){
                     title="CADASTRAR"
                     size="sm"
                     type="outline"
-                    color="transparent"
+                    color="(255, 255, 255, 0)"
                 />
             </View>
     </SafeAreaView>
