@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Card, ListItem, Button, Icon } from "react-native-elements";
+
+import ImagePicker  from "react-native-image-picker";
+
 import {
   StyleSheet,
   Text,
@@ -10,6 +13,7 @@ import {
   Image,
   Linking,
 } from "react-native";
+
 import { set } from "react-native-reanimated";
 import { FontAwesome } from "@expo/vector-icons";
 
@@ -26,8 +30,23 @@ function NewPost({ navigation }) {
   const [previewSource, setPreviewSource] = useState();
   const [fileInputState, setFileInputState] = useState("");
 
-                               
-    async function EnviarArquivo(base64EncodedImage) {
+    
+  function handleChoosePhoto(){
+    
+      const option = {
+        noData: true
+      };
+
+      ImagePicker.launchImageLibrary(option, response => {
+        console.log("response", response);
+        if (response.uri){
+          this.setState({ photo: response});
+        }
+
+      });
+    } 
+  
+    async function EnviarArqiuvo(base64EncodedImage) {
 
         try {
     
@@ -57,10 +76,11 @@ function NewPost({ navigation }) {
         <View style={styles.newPostHeader}>
           <Text style={styles.titles}>Nova Postagem</Text>
         </View>
+
         <View style={styles.newPostBody}>
           <View style={styles.sendFileButton}>
             <TouchableOpacity
-              onPress={() => {
+              onPress={() => { handleChoosePhoto()
               }}
             >
               <FontAwesome
@@ -73,7 +93,13 @@ function NewPost({ navigation }) {
             </TouchableOpacity>
           </View>
         </View>
-
+        <View>
+          <Image 
+            source={{uri: photo.uri}}
+            style={{ width: 300, height: 300}}
+          >
+          </Image>     
+        </View>
         <View style={styles.newPostFooter}>
           <Button title="Enviar"></Button>
         </View>

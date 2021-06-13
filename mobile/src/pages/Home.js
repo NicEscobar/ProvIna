@@ -70,18 +70,20 @@ function Home({ navigation }) {
                       color="#FFF"
                     ></FontAwesome>
                   </TouchableOpacity>
+
                   <TouchableOpacity
                     onPress={() => {
-                      navigation.navigate("Comment");
+                      navigation.navigate("Comment", {
+                        IdArquivos: m.IdArquivos,
+                        IdAluno: IdAluno,
+                      });
                     }}
                   >
                     <FontAwesome
                       name="download"
                       size={25}
                       color="#FFF"
-                    >onPress={() => {
-                      navigation.navigate("Comment");
-                    }} </FontAwesome>
+                    > </FontAwesome>
                   </TouchableOpacity>
                 </View>
               </View>
@@ -167,7 +169,7 @@ const styles = StyleSheet.create({
 
   cardFooter: {
     flex: 1,
-    margin: 2,
+    margin: 6,
     flexDirection: "row",
     justifyContent: "flex-end",
     padding: 10,
