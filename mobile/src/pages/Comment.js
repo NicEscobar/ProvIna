@@ -53,7 +53,7 @@ function Comment({ navigation }) {
 
   return (
     <ScrollView style={styles.commentPage}>
-      <Card containerStyle={styles.cardBox}>
+      <Card containerStyle={styles.cardBox} alignItems= "center">
         <View style={styles.createCommentHeader}>
           <Image
                       style={styles.postImage}
