@@ -1,19 +1,27 @@
 import React, { useState } from "react";
-import { View, TouchableOpacity, Text, StyleSheet, Image } from "react-native";
+import { View, TouchableOpacity, Text, StyleSheet, Image, TextInput } from "react-native";
 
 import Constants from "expo-constants";
 import * as Permissions from "expo-permissions";
 import * as ImagePicker from "expo-image-picker";
-import Axios from "axios";
 
-export default function Upload() {
+import { Avatar } from "react-native-elements/dist/avatar/Avatar";
+
+import api from "../api/api";
+
+export default function Upload({ navigation }) {
   
   const [avatar, setAvatar] = useState();
+
+  const [nomeArquivo, setNomeArquivo] = useState('');
+  const [categoria, setCategoria] = useState('');
+
+  const { IdAluno } = navigation.state.params;
 
   async function imagePickerCall() {
     
     if (Constants.platform.ios) {
-      
+       
       const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
 
       if (status !== "granted") {
@@ -37,21 +45,56 @@ export default function Upload() {
     setAvatar(data);
   }
 
-  async function uploadImage() {
+  async function EnviarArquivo() {
+
+    console.log("avatar", avatar.uri)
+
     
-    const data = new FormData();
+    try {
 
-    data.append("avatar", {
-      uri: avatar.uri,
-      type: avatar.type
-    });
+      await api.post('/arquivo', {
 
-    console.log("data", data)
+        headers: {
+          'Authorization': '',
+          'Content-type': 'application/json'
+        },
+
+        Data: avatar.uri,
+        NomeArquivo: nomeArquivo,
+        Categoria: categoria,
+        IdAluno_Arquivos: IdAluno
+
+      });
+
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async function uploadImage() {
+
+    console.log("avatar", avatar.uri)
     //await Axios.post("http://localhost:3333/files", data);
   }
 
   return (
     <View style={styles.container}>
+      <View >
+                <TextInput
+                   style={styles.BoxInput}
+                   placeholder="Nome do Arquivo" 
+                   placeholderTextColor="#454545"
+                   onChangeText={setNomeArquivo} >          
+
+                </TextInput>
+    
+                <TextInput
+                   style={styles.BoxInput}
+                   placeholder="Categoria" 
+                   placeholderTextColor="#454545"
+                   onChangeText={setCategoria}>                  
+                </TextInput>
+            </View>
       <Image
         source={{
           uri: avatar
@@ -65,7 +108,7 @@ export default function Upload() {
         <Text style={styles.buttonText}>Escolher imagem</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.button} onPress={uploadImage}>
+      <TouchableOpacity style={styles.button} onPress={EnviarArquivo}>
         <Text style={styles.buttonText}>Enviar imagem</Text>
       </TouchableOpacity>
     </View>
@@ -75,7 +118,9 @@ export default function Upload() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
+    elevation: 8,
+    justifyContent: 'center',
+    backgroundColor: '#181818',
     alignItems: "center"
   },
   button: {
@@ -94,5 +139,19 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
     borderRadius: 50
-  }
+  },
+  BoxInput: {
+        
+    borderWidth: 2,
+    borderStyle: 'solid',
+    borderColor: 'rgb(187,134,252)',
+    margin: 20,
+    textAlign:'center',
+    color: 'white',
+    justifyContent: 'center',
+    paddingVertical: 20,
+    paddingHorizontal: 10,
+    marginHorizontal: 40,
+    marginVertical: 20,
+},
 });

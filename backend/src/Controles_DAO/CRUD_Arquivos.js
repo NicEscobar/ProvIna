@@ -153,15 +153,15 @@ module.exports = {
 
           const {Data, NomeArquivo, Categoria, IdAluno_Arquivos} = request.body;
 
-          console.log("IdAluno_Arquivos",IdAluno_Arquivos)
+          console.log("Data")
         
           const respUpload = await cloudinary.uploader.upload(Data, {
             upload_preset: 'dev_setups'
           })
           
-          // URls = respUpload.url;
+          console.log("respUpload",respUpload);
+
           URls = "v" + respUpload.version + "/" + respUpload.public_id + "." + respUpload.format;
-          console.log(URls);
           Tipo = respUpload.format;
 
           var conn = new sql.ConnectionPool(configuracaoSQL);
