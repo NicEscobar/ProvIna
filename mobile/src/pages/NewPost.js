@@ -1,124 +1,98 @@
-import React, { useState, useEffect } from "react";
-import { Card, ListItem, Button, Icon } from "react-native-elements";
-import {
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-  SafeAreaView,
-  TouchableOpacity,
-  Image,
-  Linking,
-} from "react-native";
-import { set } from "react-native-reanimated";
-import { FontAwesome } from "@expo/vector-icons";
+import React, { useState } from "react";
+import { View, TouchableOpacity, Text, StyleSheet, Image } from "react-native";
 
-import api from "../api/api";
+import Constants from "expo-constants";
+import * as Permissions from "expo-permissions";
+import * as ImagePicker from "expo-image-picker";
+import Axios from "axios";
 
-function NewPost({ navigation }) {
-  const { IdAluno } = navigation.state.params;
+export default function Upload() {
+  
+  const [avatar, setAvatar] = useState();
 
-  const [nomeArquivo, setNomeArquivo] = useState("");
-  const [categoria, setCategoria] = useState("");
+  async function imagePickerCall() {
+    
+    if (Constants.platform.ios) {
+      
+      const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
 
-  const [selectedFile, setSelectedFile] = useState("");
-  const [previewSource, setPreviewSource] = useState();
-  const [fileInputState, setFileInputState] = useState("");
-
-  async function EnviarArquivo(base64EncodedImage) {
-    try {
-      await api.post("/arquivo", {
-        headers: {
-          Authorization: "",
-          "Content-type": "application/json",
-        },
-
-        Data: base64EncodedImage,
-        NomeArquivo: nomeArquivo,
-        Categoria: categoria,
-        IdAluno_Arquivos: IdAluno,
-      });
-    } catch (error) {
-      console.error(error);
+      if (status !== "granted") {
+        alert("Nós precisamos dessa permissão.");
+        return;
+      }
     }
+
+    const data = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All
+    });
+
+    if (data.cancelled) {
+      return;
+    }
+
+    if (!data.uri) {
+      return;
+    }
+
+    setAvatar(data);
+  }
+
+  async function uploadImage() {
+    
+    const data = new FormData();
+
+    data.append("avatar", {
+      uri: avatar.uri,
+      type: avatar.type
+    });
+
+    console.log("data", data)
+    //await Axios.post("http://localhost:3333/files", data);
   }
 
   return (
-    <View style={styles.newPostPage}>
-      <Card containerStyle={styles.cardBox}>
-        <View style={styles.newPostHeader}>
-          <Text style={styles.titles}>Nova Postagem</Text>
-        </View>
-        <View style={styles.newPostBody}>
-          <View style={styles.sendFileButton}>
-            <TouchableOpacity onPress={() => {}}>
-              <FontAwesome
-                name="download"
-                size={90}
-                style={styles.btnNewItemDesign}
-                color="#FFF"
-              >
-                <Text style={styles.titles}>Selecione o Arquivo</Text>
-              </FontAwesome>
-            </TouchableOpacity>
-          </View>
-        </View>
+    <View style={styles.container}>
+      <Image
+        source={{
+          uri: avatar
+            ? avatar.uri
+            : "https://mltmpgeox6sf.i.optimole.com/w:761/h:720/q:auto/https://redbanksmilesnj.com/wp-content/uploads/2015/11/man-avatar-placeholder.png"
+        }}
+        style={styles.avatar}
+      />
 
-        <View style={styles.newPostFooter}>
-          <Button
-            title="ENVIAR"
-            size="sm"
-            type="outline"
-            color="(255, 255, 255, 0)"
-          />
-        </View>
-      </Card>
+      <TouchableOpacity style={styles.button} onPress={imagePickerCall}>
+        <Text style={styles.buttonText}>Escolher imagem</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.button} onPress={uploadImage}>
+        <Text style={styles.buttonText}>Enviar imagem</Text>
+      </TouchableOpacity>
     </View>
   );
 }
-const styles = StyleSheet.create({
-  newPostPage: {
-    flex: 1,
-    justifyContent: "flex-start",
-    backgroundColor: "#000",
-  },
-  cardBox: {
-    borderRadius: 4,
-    borderColor: "#00000000",
-    backgroundColor: "rgb(18,18,18)",
-    padding: 0,
-    width: 600,
-    height: 250,
-    width: "100%",
-    alignItems: "center",
-  },
-  newPostHeader: {
-    flex: 1,
-    alignItems: "center",
-    margin: 5,
-  },
-  sendFileButton: {
-    backgroundColor: "#000",
-  },
-  newPostBody: {
-    flex: 2,
-    padding: 5,
-    textAlign: "center",
-  },
-  newPostFooter: {
-    borderWidth: 2,
-    borderColor: "#03DAC6",
-    color: "#00000000",
-    justifyContent: "center",
-    marginHorizontal: 80,
-    marginVertical: 20,
-    paddingVertical: 10,
-    paddingHorizontal: 10,
-  },
-  titles: {
-    fontSize: 30,
-    color: "#fff",
-  },
-});
 
-export default NewPost;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  button: {
+    width: 150,
+    height: 50,
+    borderRadius: 3,
+    backgroundColor: "#7159c1",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 20
+  },
+  buttonText: {
+    color: "#fff"
+  },
+  avatar: {
+    width: 100,
+    height: 100,
+    borderRadius: 50
+  }
+});

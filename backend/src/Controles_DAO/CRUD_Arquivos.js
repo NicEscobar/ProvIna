@@ -159,7 +159,9 @@ module.exports = {
             upload_preset: 'dev_setups'
           })
           
-          URls = respUpload.url;
+          // URls = respUpload.url;
+          URls = "v" + respUpload.version + "/" + respUpload.public_id + "." + respUpload.format;
+          console.log(URls);
           Tipo = respUpload.format;
 
           var conn = new sql.ConnectionPool(configuracaoSQL);
